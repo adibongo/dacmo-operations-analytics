@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operations Simulation Lab · DACMO 2026 · Prof Bongo Adi · LBS</title>
+<style>
+:root{--bg:#06201A;--bg2:#0D2E27;--panel:#0f3a31;--line:rgba(200,148,31,.25);--gold:#C8941F;--teal:#0E8A78;--teal2:#2dd4bf;--red:#e05a4c;--blue:#4a86d0;--purple:#a78bfa;--ink:#F4F7FB;--mute:#9fbab3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Calibri,"Segoe UI",system-ui,-apple-system,sans-serif}
+body{border-top:6px solid var(--gold);min-height:100vh}
+header{display:flex;align-items:center;gap:16px;padding:12px 22px;background:#041713;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header .brand{display:flex;align-items:center;gap:10px}
+header .brand b{font-size:18px;letter-spacing:.5px}
+header .brand small{display:block;color:var(--mute);font-size:12px;letter-spacing:2px;text-transform:uppercase}
+nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav button{background:transparent;color:var(--mute);border:1px solid transparent;padding:7px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px;display:flex;align-items:center;gap:6px}
+nav button:hover{color:var(--ink);border-color:var(--line)}
+nav button.on{background:var(--gold);color:#06201A;font-weight:700}
+.hx{display:inline-grid;place-items:center;width:22px;height:25px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:currentColor;font-size:11px;font-weight:800}
+nav button .hx{background:var(--teal);color:#fff}
+nav button.on .hx{background:#06201A;color:var(--gold)}
+main{padding:22px;max-width:1500px;margin:0 auto}
+section{display:none}section.on{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.kicker{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:700;text-transform:uppercase}
+h1{font-size:34px;margin:4px 0 6px}h2{font-size:26px;margin:4px 0 4px}
+.sub{color:var(--mute);font-size:16px;max-width:980px;line-height:1.45}
+.grid{display:grid;grid-template-columns:320px 1fr;gap:18px;margin-top:16px}
+.card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:16px}
+.ctl label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--mute);margin:12px 0 3px}
+.ctl label b{color:var(--ink);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--gold)}
+select,input[type=number]{width:100%;background:#06201A;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}
+.btn{background:var(--gold);color:#06201A;border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:#06201A;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px 12px}
+.kpi span{display:block;color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.kpi b{font-size:26px;font-variant-numeric:tabular-nums}
+.kpi small{color:var(--mute);font-size:12px}
+.good{color:var(--teal2)}.bad{color:#ff8a7a}.warn{color:var(--gold)}
+canvas{width:100%;display:block}
+.cv{height:270px}.cvs{height:200px}.cvt{height:330px}
+.ctitle{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 6px}
+.predict{background:rgba(200,148,31,.08);border:1px dashed var(--gold);border-radius:12px;padding:10px 12px;margin-top:12px;font-size:14px}
+.predict input{margin-top:6px}
+.insight{display:none;background:rgba(14,138,120,.15);border:1px solid var(--teal);border-radius:12px;padding:12px 14px;margin-top:12px;line-height:1.45;font-size:15px}
+.insight.on{display:block;animation:fade .4s}
+.ctx{font-size:13px;color:var(--mute);margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin:4px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* home */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:16px 0 8px}
+.hero h1{font-size:52px;line-height:1.05}
+.hero h1 em{color:var(--gold);font-style:normal}
+.honey{position:relative;height:330px}
+.labs{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px}
+.lab{background:var(--bg2);border-radius:14px;padding:16px;cursor:pointer;border:1px solid rgba(255,255,255,.06);transition:.2s}
+.lab:hover{transform:translateY(-4px);border-color:var(--gold)}
+.lab .hb{width:54px;height:62px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;font-weight:800;font-size:22px;color:#fff;margin-bottom:8px}
+.lab h3{margin:2px 0 4px;font-size:19px}.lab p{margin:0;color:var(--mute);font-size:14px;line-height:1.35}
+.lab .who{margin-top:8px;font-size:12px;color:var(--gold)}
+.rule{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.rule div{flex:1;min-width:160px;background:#041713;border:1px solid var(--line);border-radius:12px;padding:12px}
+.rule b{color:var(--gold);font-size:20px}
+footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-top:1px solid var(--line);margin-top:24px}
+@media(max-width:1100px){.grid{grid-template-columns:1fr}.labs{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">
+  <svg width="40" height="46" viewBox="0 0 100 115" aria-label="bongo.ai"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E8A78"/><stop offset="1" stop-color="#C8941F"/></linearGradient></defs><polygon points="50,2 97,29 97,86 50,113 3,86 3,29" fill="url(#lg)"/><polygon points="50,18 83,37 83,78 50,97 17,78 17,37" fill="#06201A"/><text x="50" y="72" text-anchor="middle" font-family="Calibri,Arial" font-weight="700" font-size="44" fill="#F4F7FB">b</text><circle cx="68" cy="70" r="5" fill="#C8941F"/></svg>
+  <div><b>Operations Simulation Lab</b><small>bongo.ai · Lagos Business School · DACMO 2026</small></div>
+ </div>
+ <nav id="nav">
+  <button data-t="home" class="on"><span class="hx">⌂</span>Home</button>
+  <button data-t="l1"><span class="hx">1</span>Turnaround</button>
+  <button data-t="l2"><span class="hx">2</span>The Gate</button>
+  <button data-t="l3"><span class="hx">3</span>Demand Shock</button>
+  <button data-t="l4"><span class="hx">4</span>Asset Fleet</button>
+  <button data-t="l5"><span class="hx">5</span>Import Lifeline</button>
+ </nav>
+</header>
+<main>
+
+<!-- HOME -->
+<section id="home" class="on">
+ <div class="hero">
+  <div>
+   <div class="kicker">Analytics for Operations · Sessions 1 &amp; 2</div>
+   <h1>Your plan runs on <em>averages</em>.<br>Your operation lives in the <em>variance</em>.</h1>
+   <p class="sub">Five live simulations built around the operations in this room: airside turnarounds, gates and service desks, festive demand, critical assets and imported inputs. Before every run you <b>predict</b>. Then you <b>run</b> it, <b>explain</b> the gap and <b>decide</b>.</p>
+   <div class="rule"><div><b>1 · Predict</b><br><span class="sub">Commit to a number before the model speaks</span></div><div><b>2 · Run</b><br><span class="sub">1,000 futures in a second</span></div><div><b>3 · Explain</b><br><span class="sub">Why was your gut wrong?</span></div><div><b>4 · Decide</b><br><span class="sub">Which lever, at what cost?</span></div></div>
+  </div>
+  <canvas id="honey" class="honey"></canvas>
+ </div>
+ <div class="labs">
+  <div class="lab" data-go="l1"><div class="hb" style="background:#0B6B5E">1</div><h3>The 45-Minute Turnaround</h3><p>Monte Carlo on an aircraft turn. Why "on plan" flights leave late, and which task really sits on the critical path.</p><div class="who">SAHCO · Aero Contractors · Pilgrims Africa</div></div>
+  <div class="lab" data-go="l2"><div class="hb" style="background:#1D4E89">2</div><h3>The Gate</h3><p>Live queue at a weighbridge, port gate or benefits desk. Watch the hockey stick appear as utilisation rises.</p><div class="who">Dangote · Golden Sugar · LFZ · Fidelity · Sterling · Coronation</div></div>
+  <div class="lab" data-go="l3"><div class="hb" style="background:#C8941F">3</div><h3>December Demand Shock</h3><p>A four-tier FMCG chain meets a festive spike. Watch the bullwhip crack, then tame it.</p><div class="who">UAC Foods · Golden Sugar · Dangote · Everyday · Sunbeth</div></div>
+  <div class="lab" data-go="l4"><div class="hb" style="background:#C0392B">4</div><h3>The Asset Fleet</h3><p>Run to failure, preventive or condition-based? A Weibull fleet of pumps and compressors decides.</p><div class="who">Seplat · Chevron · Shell · Sahara · PESO · Librod · Hobark</div></div>
+  <div class="lab" data-go="l5"><div class="hb" style="background:#8B5CF6">5</div><h3>The Import Lifeline</h3><p>Reorder points under port congestion and FX delays. What does resilience actually cost?</p><div class="who">NSPM · Segilola · Dangote · UAC Foods · Erdis</div></div>
+ </div>
+</section>
+
+<!-- LAB 1 -->
+<section id="l1">
+ <div class="kicker">Lab 1 · Session 1 · Flaw of Averages</div>
+ <h2>The 45-Minute Turnaround: Murtala Muhammed, 06:40 bank</h2>
+ <p class="sub">A narrow-body turn has seven ground tasks. Planning with the averages puts departure at <b id="l1plan">42</b> minutes, comfortably inside the slot. Run 1,000 turns and see what really happens.</p>
+ <div class="grid">
+  <div class="card ctl">
+   <div class="predict">🔮 <b>Predict first:</b> with a 45-min slot, what % of turns leave on time?<input type="number" id="l1guess" placeholder="e.g. 85"></div>
+   <label>Task-time variability (CV)<b id="l1cvv"></b></label><input type="range" id="l1cv" min="0" max="0.6" step="0.05" value="0.3">
+   <label>Scheduled turn slot (min)<b id="l1slotv"></b></label><input type="range" id="l1slot" min="35" max="65" step="1" value="45">
+   <label>Ground crew / GSE late (prob.)<b id="l1pdv"></b></label><input type="range" id="l1pd" min="0" max="0.4" step="0.05" value="0.1">
+   <label>Invest to cut one task by 20%</label>
+   <select id="l1imp"><option value="">None</option><option value="fue">Refuelling (faster bowser)</option><option value="cln">Cabin cleaning (bigger crew)</option><option value="cat">Catering (pre-staged)</option><option value="brd">Boarding (zoned boarding)</option><option value="off">Bag offload (belt loader)</option><option value="lod">Bag load (belt loader)</option></select>
+   <div class="row2"><div><label>Turns / day</label><input type="number" id="l1turns" value="40"></div><div><label>Delay cost ₦/min</label><input type="number" id="l1cost" value="150000"></div></div>
+   <button class="btn" id="l1run">▶ Run 1,000 turnarounds</button>
+   <button class="btn ghost" id="l1ins">Reveal the insight</button>
+  </div>
+  <div>
+   <div class="kpis" id="l1k"></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Distribution of departure times (minutes after on-blocks)</div><canvas id="l1h" class="cv"></canvas>
+   <div class="legend"><span><i style="background:#0E8A78"></i>On time</span><span><i style="background:#e05a4c"></i>Late</span><span><i style="background:#C8941F"></i>Plan by averages</span><span><i style="background:#fff"></i>Slot</span></div></div>
+   <div class="two" style="margin-top:12px">
+    <div class="card"><div class="ctitle">Criticality index: how often each task drives the departure</div><canvas id="l1c" class="cvs"></canvas></div>
+    <div class="card"><div class="ctitle">The turn network</div><canvas id="l1n" class="cvs"></canvas></div>
+   </div>
+   <div class="insight" id="l1insight"><b>The Flaw of Averages.</b> Departure is the <i>maximum</i> of several parallel paths. The average of a maximum is always bigger than the maximum of the averages, so a plan built from averages is biased early. It is not merely uncertain. Notice also that the task that looks critical on paper (refuelling) is often <i>not</i> the one that drives delay. Invest where the criticality index points, not where the Gantt chart points.</div>
+  </div>
+ </div>
+</section>
+
+<!-- LAB 2 -->
+<section id="l2">
+ <div class="kicker">Lab 2 · Session 1 · Utilisation × Variability</div>
+ <h2 id="l2title">The Gate</h2>
+ <p class="sub" id="l2sub"></p>
+ <div class="grid">
+  <div class="card ctl">
+   <label>Context</label>
+   <select id="l2ctx">
+    <option value="cement">Dangote: cement truck weighbridge</option>
+    <option value="sugar">Golden Sugar: cane truck intake</option>
+    <option value="lfz">Lagos Free Zone: container gate</option>
+    <option value="pension">Fidelity Pensions: benefit applications</option>
+    <option value="claims">Insurer / Registrar: claims &amp; requests desk</option>
+    <option value="pilgrim">Pilgrims Africa: departure processing</option>
+   </select>
+   <div class="predict">🔮 <b>Predict:</b> at 90% utilisation, what's the average wait in minutes?<input type="number" id="l2guess" placeholder="minutes"></div>
+   <label>Arrivals per hour<b id="l2lv"></b></label><input type="range" id="l2l" min="4" max="80" step="1" value="20">
+   <label>Servers (bays / officers)<b id="l2cv"></b></label><input type="range" id="l2c" min="1" max="8" step="1" value="2">
+   <label>Avg service time (min)<b id="l2sv"></b></label><input type="range" id="l2s" min="1" max="30" step="0.5" value="5">
+   <label>Service variability (CV)<b id="l2csv"></b></label><input type="range" id="l2cs" min="0" max="1.5" step="0.1" value="0.8">
+   <label>Arrival variability (CV: 1 ≈ random)<b id="l2cav"></b></label><input type="range" id="l2ca" min="0" max="1.5" step="0.1" value="1">
+   <label>Sim speed (sim-min per sec)<b id="l2spv"></b></label><input type="range" id="l2sp" min="1" max="120" step="1" value="20">
+   <div class="row2"><div><label>Server ₦/day</label><input type="number" id="l2sc" value="250000"></div><div><label>Wait ₦/hr each</label><input type="number" id="l2wc" value="15000"></div></div>
+   <div class="row2"><button class="btn" id="l2pause">❚❚ Pause</button><button class="btn ghost" id="l2reset">↺ Reset</button></div>
+   <button class="btn ghost" id="l2ins">Reveal the insight</button>
+  </div>
+  <div>
+   <div class="kpis" id="l2k"></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle" id="l2animt">Live floor</div><canvas id="l2a" class="cv" style="height:230px"></canvas></div>
+   <div class="two" style="margin-top:12px">
+    <div class="card"><div class="ctitle">Queue length over time</div><canvas id="l2q" class="cvs"></canvas></div>
+    <div class="card"><div class="ctitle">The hockey stick: expected wait vs utilisation</div><canvas id="l2kc" class="cvs"></canvas></div>
+   </div>
+   <div class="insight" id="l2insight"><b>Kingman's law: wait ≈ variability × utilisation ÷ (1 − utilisation) × service time.</b> Going from 80% to 90% busy roughly <i>doubles</i> waiting time, and from 90% to 95% doubles it again. Halving variability (scheduled slots, standard work, digital pre-checks) buys as much as adding a server. Most efficiency programmes push utilisation up and then wonder why queues explode.</div>
+  </div>
+ </div>
+</section>
+
+<!-- LAB 3 -->
+<section id="l3">
+ <div class="kicker">Lab 3 · Session 2 · Feedback &amp; Delays</div>
+ <h2>December Demand Shock: the bullwhip in a four-tier chain</h2>
+ <p class="sub">Open-market retailers → Distributor → Regional depot → Factory. Shoppers' demand rises during the festive season. Each tier orders sensibly from its own point of view, yet the factory sees chaos.</p>
+ <div class="grid">
+  <div class="card ctl">
+   <label>Context</label>
+   <select id="l3ctx"><option>UAC Foods: snacks &amp; dairy</option><option>Golden Sugar: retail sugar packs</option><option>Dangote: bagged cement</option><option>Everyday Group: FMCG distribution</option></select>
+   <label>Demand pattern</label>
+   <select id="l3pat"><option value="pulse">Festive pulse (+40% for 5 weeks)</option><option value="step">Permanent step (+20%)</option><option value="noise">Everyday noise (±10%)</option><option value="fest">Festive pulse + noise</option></select>
+   <div class="predict">🔮 <b>Predict:</b> shoppers' demand peaks at +40%. What peak will the factory see?<input type="number" id="l3guess" placeholder="% above normal"></div>
+   <label>Shipping / production lead time (weeks)<b id="l3Lv"></b></label><input type="range" id="l3L" min="1" max="6" step="1" value="3">
+   <label>Aggressiveness of stock correction<b id="l3av"></b></label><input type="range" id="l3a" min="0.1" max="1" step="0.05" value="0.3">
+   <label>Attention to pipeline (orders in transit)<b id="l3bv"></b></label><input type="range" id="l3b" min="0" max="1" step="0.05" value="0.35">
+   <label>Forecast reactiveness<b id="l3tv"></b></label><input type="range" id="l3t" min="0.05" max="0.9" step="0.05" value="0.3">
+   <label style="justify-content:flex-start;gap:8px"><input type="checkbox" id="l3share"> Share shopper (POS) data upstream</label>
+   <div class="row2"><button class="btn ghost" id="l3p1">Typical manager</button><button class="btn ghost" id="l3p2">Disciplined planner</button></div>
+   <button class="btn ghost" id="l3ins">Reveal the insight</button>
+  </div>
+  <div>
+   <div class="kpis" id="l3k"></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Orders placed by each tier (units/week)</div><canvas id="l3o" class="cv"></canvas>
+   <div class="legend"><span><i style="background:#fff"></i>Shoppers</span><span><i style="background:#2dd4bf"></i>Retailers</span><span><i style="background:#4a86d0"></i>Distributor</span><span><i style="background:#C8941F"></i>Depot</span><span><i style="background:#e05a4c"></i>Factory</span></div></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Inventory (negative = backlog / empty shelves)</div><canvas id="l3i" class="cvs"></canvas></div>
+   <div class="insight" id="l3insight"><b>Structure creates behaviour.</b> Nobody here is irrational. The bullwhip comes from <i>delays</i> plus decision rules that <i>forget the supply line</i>: "I ordered last week but it hasn't arrived, so I'll order again." Long lead times amplify it. The cures are structural: count the pipeline, share POS data, shorten lead times and correct gently. Click "Disciplined planner" to see it vanish.</div>
+  </div>
+ </div>
+</section>
+
+<!-- LAB 4 -->
+<section id="l4">
+ <div class="kicker">Lab 4 · Session 2 · Reliability Under Uncertainty</div>
+ <h2>The Asset Fleet: when should you maintain?</h2>
+ <p class="sub">A fleet of 24 critical assets over 3 years. Failure times follow a Weibull distribution. The shape β tells you <i>how</i> things fail, and that decides which maintenance strategy pays.</p>
+ <div class="grid">
+  <div class="card ctl">
+   <label>Context</label>
+   <select id="l4ctx"><option value="esp">Seplat / Chevron / Shell: ESP well pumps</option><option value="comp">Sahara / PESO: gas compressors</option><option value="kiln">Dangote: kiln ID fan</option><option value="gse">SAHCO / Aero: ground support equipment</option><option value="press">NSPM: banknote printing press</option></select>
+   <div class="predict">🔮 <b>Predict:</b> will preventive maintenance every 180 days save money on <i>this</i> asset?<input type="text" id="l4guess" placeholder="yes / no"></div>
+   <label>Weibull shape β (failure pattern)<b id="l4bv"></b></label><input type="range" id="l4b" min="0.6" max="4" step="0.1" value="2.5">
+   <div class="ctx" id="l4bt"></div>
+   <label>Characteristic life η (days)<b id="l4ev"></b></label><input type="range" id="l4e" min="100" max="1000" step="10" value="420">
+   <label>PM interval (days)<b id="l4Tv"></b></label><input type="range" id="l4T" min="30" max="1000" step="10" value="180">
+   <label>Lost margin per down-day (₦m)<b id="l4lv"></b></label><input type="range" id="l4l" min="1" max="120" step="1" value="45">
+   <div class="row2"><div><label>Failure repair ₦m / days down</label><div class="row2"><input type="number" id="l4fc" value="18"><input type="number" id="l4fd" value="5"></div></div><div><label>PM cost ₦m / days down</label><div class="row2"><input type="number" id="l4pc" value="4"><input type="number" id="l4pd" value="0.5"></div></div></div>
+   <label>Condition monitoring detection rate<b id="l4dv"></b></label><input type="range" id="l4d" min="0" max="1" step="0.05" value="0.75">
+   <label>Policy shown on fleet timeline</label>
+   <select id="l4pol"><option value="rtf">Run to failure</option><option value="pm" selected>Preventive at interval</option><option value="cbm">Condition-based (sensors + AI)</option></select>
+   <button class="btn" id="l4run">▶ Simulate fleet</button>
+   <button class="btn ghost" id="l4ins">Reveal the insight</button>
+  </div>
+  <div>
+   <div class="kpis" id="l4k"></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Cost per asset-year vs PM interval (₦m)</div><canvas id="l4c" class="cv"></canvas>
+   <div class="legend"><span><i style="background:#C8941F"></i>Preventive at interval T</span><span><i style="background:#e05a4c"></i>Run to failure</span><span><i style="background:#2dd4bf"></i>Condition-based</span></div></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Fleet timeline: 24 assets × 3 years (<span style="color:#e05a4c">● failure</span> · <span style="color:#4a86d0">◆ planned intervention</span>)</div><canvas id="l4t" class="cvt"></canvas></div>
+   <div class="insight" id="l4insight"><b>The shape decides the strategy.</b> β &lt; 1: infant mortality, so PM makes things <i>worse</i> by resetting good assets into the risky early period. β ≈ 1: random failures, where calendar PM is pure waste and only condition monitoring helps. β &gt; 1: wear-out, where an optimal interval exists. Condition-based maintenance wins whenever sensors detect failures early enough. That's why the data layer (CMMS + sensors) must come before the AI model.</div>
+  </div>
+ </div>
+</section>
+
+<!-- LAB 5 -->
+<section id="l5">
+ <div class="kicker">Lab 5 · Session 2 · Risk-Aware Inventory</div>
+ <h2>The Import Lifeline: reorder points when Apapa jams and FX bites</h2>
+ <p class="sub">A critical imported input, consumed daily and replenished by sea freight. Some orders hit port congestion, Form M or FX delays. Set your (s, Q) policy and stress-test it over 100 simulated years.</p>
+ <div class="grid">
+  <div class="card ctl">
+   <label>Context</label>
+   <select id="l5ctx"><option value="0">NSPM: security paper (reels)</option><option value="1">Segilola: processing reagents (tonnes)</option><option value="2">UAC Foods: packaging film (rolls)</option><option value="3">Dangote: critical spares (units)</option></select>
+   <div class="predict">🔮 <b>Predict:</b> 20% of shipments are delayed 2–6 weeks. How many extra days of cover do you need to keep 98% fill?<input type="number" id="l5guess" placeholder="days"></div>
+   <label>Daily usage (mean)<b id="l5mv"></b></label><input type="range" id="l5m" min="20" max="300" step="5" value="100">
+   <label>Usage variability (CV)<b id="l5cvv"></b></label><input type="range" id="l5cv" min="0" max="0.8" step="0.05" value="0.3">
+   <label>Normal lead time (days)<b id="l5Lv"></b></label><input type="range" id="l5L" min="7" max="90" step="1" value="35">
+   <label>Disruption probability per shipment<b id="l5pv"></b></label><input type="range" id="l5p" min="0" max="0.6" step="0.05" value="0.2">
+   <label>Reorder point s (days of cover)<b id="l5sv"></b></label><input type="range" id="l5s" min="0" max="120" step="1" value="40">
+   <label>Order quantity Q (days of cover)<b id="l5qv"></b></label><input type="range" id="l5q" min="5" max="120" step="1" value="30">
+   <div class="row2"><button class="btn" id="l5run">▶ Stress test</button><button class="btn ghost" id="l5opt">🎯 Find s for 98%</button></div>
+   <button class="btn ghost" id="l5ins">Reveal the insight</button>
+  </div>
+  <div>
+   <div class="kpis" id="l5k"></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">One simulated year: stock on hand (red = stock-out days)</div><canvas id="l5p1" class="cv"></canvas></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Fill rate vs reorder point: calm world vs your world</div><canvas id="l5c" class="cvs"></canvas>
+   <div class="legend"><span><i style="background:#2dd4bf"></i>No disruptions</span><span><i style="background:#e05a4c"></i>With disruptions</span><span><i style="background:#C8941F"></i>Your s</span></div></div>
+   <div class="insight" id="l5insight"><b>Disruptions fatten the tail, and the tail sets your buffer.</b> Safety stock formulas built on "average lead time ± a bit" collapse when 1 shipment in 5 is 4 weeks late. The gap between the two curves is the <i>resilience premium</i>: inventory you carry purely because of port and FX risk. Put a naira value on it. That's the business case for dual sourcing, bonded stock or a Lagos Free Zone buffer warehouse.</div>
+  </div>
+ </div>
+</section>
+
+</main>
+<footer><a href="../" style="color:#C8941F">← Back to the DACMO hub</a> · Prof Bongo Adi · Lagos Business School · bongo.ai · Developing Analytical Competence for Managing Operations (DACMO) 2026 · All simulations run live in your browser</footer>
+
+<script>
+// ---------- utilities ----------
+const $=id=>document.getElementById(id);
+const rnd=Math.random;
+function gauss(){let u=0,v=0;while(!u)u=rnd();while(!v)v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+function lnorm(m,cv){if(cv<=0.001)return m;const s2=Math.log(1+cv*cv);return Math.exp(Math.log(m)-s2/2+Math.sqrt(s2)*gauss())}
+function weib(b,e){return e*Math.pow(-Math.log(1-rnd()),1/b)}
+const fmt=(v,d=0)=>isFinite(v)?v.toLocaleString('en-NG',{maximumFractionDigits:d,minimumFractionDigits:d}):'∞';
+const naira=v=>{const a=Math.abs(v);return '₦'+(a>=1e9?fmt(v/1e9,2)+'bn':a>=1e6?fmt(v/1e6,1)+'m':fmt(v,0))};
+function fit(c){const d=window.devicePixelRatio||1,r=c.getBoundingClientRect();c.width=Math.max(1,r.width*d);c.height=Math.max(1,r.height*d);const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{x,w:r.width,h:r.height}}
+function nice(a,b,n=5){const sp=(b-a)||1,s0=sp/n,m=Math.pow(10,Math.floor(Math.log10(s0))),r=s0/m,st=(r<1.5?1:r<3?2:r<7?5:10)*m,t=[];for(let v=Math.ceil(a/st)*st;v<=b+1e-9;v+=st)t.push(+v.toFixed(8));return t}
+function chart(c,o){
+ const {x,w,h}=fit(c);x.clearRect(0,0,w,h);
+ const m={l:52,r:14,t:10,b:30};
+ const X=v=>m.l+(v-o.xmin)/(o.xmax-o.xmin)*(w-m.l-m.r), Y=v=>h-m.b-(Math.min(Math.max(v,o.ymin),o.ymax)-o.ymin)/(o.ymax-o.ymin)*(h-m.t-m.b);
+ x.font='11px Calibri,system-ui';x.fillStyle='#9fbab3';x.strokeStyle='rgba(255,255,255,.07)';x.lineWidth=1;
+ nice(o.ymin,o.ymax,4).forEach(t=>{x.beginPath();x.moveTo(m.l,Y(t));x.lineTo(w-m.r,Y(t));x.stroke();x.textAlign='right';x.fillText(o.yf?o.yf(t):fmt(t,Math.abs(t)<10&&t%1?1:0),m.l-6,Y(t)+4)});
+ nice(o.xmin,o.xmax,7).forEach(t=>{x.textAlign='center';x.fillText(o.xf?o.xf(t):fmt(t,t%1?1:0),X(t),h-m.b+16)});
+ if(o.xl){x.textAlign='right';x.fillText(o.xl,w-m.r,h-2)}
+ (o.shade||[]).forEach(s=>{x.fillStyle=s.c;x.fillRect(X(s.x0),m.t,Math.max(1,X(s.x1)-X(s.x0)),h-m.t-m.b)});
+ (o.bars||[]).forEach(b=>{x.fillStyle=b.c;const y0=Y(Math.max(o.ymin,0));x.fillRect(X(b.x0)+.5,Y(b.y),Math.max(1,X(b.x1)-X(b.x0)-1),y0-Y(b.y))});
+ (o.series||[]).forEach(s=>{if(!s.pts.length)return;x.strokeStyle=s.c;x.lineWidth=s.w||2;x.setLineDash(s.dash||[]);x.beginPath();s.pts.forEach((p,i)=>{const px=X(p[0]),py=Y(p[1]);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();x.setLineDash([]);
+  if(s.fill){x.lineTo(X(s.pts[s.pts.length-1][0]),Y(o.ymin));x.lineTo(X(s.pts[0][0]),Y(o.ymin));x.closePath();x.fillStyle=s.fill;x.fill()}});
+ (o.vl||[]).forEach(v=>{x.strokeStyle=v.c;x.lineWidth=2;x.setLineDash(v.dash||[5,4]);x.beginPath();x.moveTo(X(v.x),m.t);x.lineTo(X(v.x),h-m.b);x.stroke();x.setLineDash([]);if(v.t){x.fillStyle=v.c;x.textAlign='left';x.font='bold 12px Calibri,system-ui';x.fillText(v.t,X(v.x)+4,m.t+12+(v.dy||0));x.font='11px Calibri,system-ui'}});
+ (o.hl||[]).forEach(v=>{x.strokeStyle=v.c;x.lineWidth=1.5;x.setLineDash([5,4]);x.beginPath();x.moveTo(m.l,Y(v.y));x.lineTo(w-m.r,Y(v.y));x.stroke();x.setLineDash([]);if(v.t){x.fillStyle=v.c;x.textAlign='left';x.fillText(v.t,m.l+4,Y(v.y)-4)}});
+ (o.dots||[]).forEach(d=>{x.fillStyle=d.c;x.beginPath();x.arc(X(d.x),Y(d.y),d.r||6,0,7);x.fill();x.strokeStyle='#06201A';x.lineWidth=2;x.stroke();if(d.t){x.fillStyle=d.c;x.font='bold 12px Calibri';x.textAlign='left';x.fillText(d.t,X(d.x)+9,Y(d.y)-6)}});
+ return{X,Y}
+}
+function kpis(el,arr){$(el).innerHTML=arr.map(k=>`<div class="kpi"><span>${k[0]}</span><b class="${k[2]||''}">${k[1]}</b>${k[3]?`<small><br>${k[3]}</small>`:''}</div>`).join('')}
+function bindLabels(map){for(const id in map){const el=$(id),f=map[id];const u=()=>{$(id+'v').textContent=f(+el.value)};el.addEventListener('input',u);u()}}
+function hexPath(x,cx,cy,r){x.beginPath();for(let i=0;i<6;i++){const a=Math.PI/3*i+Math.PI/6;const px=cx+r*Math.cos(a),py=cy+r*Math.sin(a);i?x.lineTo(px,py):x.moveTo(px,py)}x.closePath()}
+
+// ---------- tabs ----------
+const renders={};let current='home';
+function show(t){current=t;document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===t));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));setTimeout(()=>renders[t]&&renders[t](),30);window.scrollTo(0,0)}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.t));
+document.querySelectorAll('.lab').forEach(b=>b.onclick=()=>show(b.dataset.go));
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;const k={'0':'home','1':'l1','2':'l2','3':'l3','4':'l4','5':'l5'}[e.key];if(k)show(k)});
+window.addEventListener('resize',()=>renders[current]&&renders[current]());
+document.querySelectorAll('[id$=ins]').forEach(b=>{const id=b.id.replace('ins','insight');b.onclick=()=>$(id).classList.toggle('on')});
+
+// ---------- home honeycomb ----------
+let hT=0;const hexLabels=['Queue','Bullwhip','Weibull','Monte Carlo','Kingman','Safety stock','Critical path','Forecast','Buffer','Risk','Flow','AI'];
+function honey(){if(current!=='home'){requestAnimationFrame(honey);
+{const h=(location.hash||'').replace('#','');if(['l1','l2','l3','l4','l5'].includes(h))setTimeout(()=>show(h),50);}return}const c=$('honey');const {x,w,h}=fit(c);x.clearRect(0,0,w,h);hT+=0.012;const r=38;let k=0;
+ for(let row=0;row<5;row++)for(let col=0;col<5;col++){const cx=w/2-2*r*1.73+col*r*1.75+(row%2)*r*.87,cy=30+row*r*1.5;const ph=Math.sin(hT+col*.7+row*.9);const a=.25+.35*(ph+1)/2;
+  hexPath(x,cx,cy+ph*3,r-3);x.fillStyle=(row+col)%4===0?`rgba(200,148,31,${a})`:`rgba(14,138,120,${a})`;x.fill();x.strokeStyle='rgba(200,148,31,.35)';x.stroke();
+  if((row+col)%2===0){x.fillStyle='rgba(244,247,251,.85)';x.font='12px Calibri';x.textAlign='center';x.fillText(hexLabels[k++%hexLabels.length],cx,cy+4+ph*3)}}
+ hexPath(x,w/2,30+2*r*1.5,r*1.15);x.fillStyle='#06201A';x.fill();x.lineWidth=3;x.strokeStyle='#C8941F';x.stroke();x.lineWidth=1;x.fillStyle='#F4F7FB';x.font='bold 22px Calibri';x.textAlign='center';x.fillText('bongo',w/2,30+3*r+2);x.fillStyle='#C8941F';x.fillText('.ai',w/2,30+3*r+22);
+ requestAnimationFrame(honey)}
+requestAnimationFrame(honey);
+
+// ---------- LAB 1 ----------
+const T1={deb:['Deboarding',8],cln:['Cabin cleaning',10],cat:['Catering',12],fue:['Refuelling',15],off:['Bag offload',12],lod:['Bag & cargo load',14],brd:['Boarding',15]};const PUSH=4;
+bindLabels({l1cv:v=>v.toFixed(2),l1slot:v=>v+' min',l1pd:v=>Math.round(v*100)+'%'});
+let L1=null;
+function runL1(){const cv=+$('l1cv').value,slot=+$('l1slot').value,pd=+$('l1pd').value,imp=$('l1imp').value,N=1000;
+ const m={};for(const k in T1)m[k]=T1[k][1]*(k===imp?0.8:1);
+ const plan=Math.max(m.deb+Math.max(m.cln,m.cat,m.fue)+m.brd,m.off+m.lod)+PUSH;
+ const deps=[],crit={cln:0,cat:0,fue:0,bag:0};
+ for(let i=0;i<N;i++){const d=lnorm(m.deb,cv),c=lnorm(m.cln,cv),ca=lnorm(m.cat,cv),f=lnorm(m.fue,cv),o=lnorm(m.off,cv)+(rnd()<pd?5+rnd()*15:0),l=lnorm(m.lod,cv),b=lnorm(m.brd,cv);
+  const prep=Math.max(c,ca,f),be=d+prep+b,bg=o+l;deps.push(Math.max(be,bg)+PUSH);if(bg>be)crit.bag++;else crit[prep===c?'cln':prep===ca?'cat':'fue']++}
+ deps.sort((a,b)=>a-b);const mean=deps.reduce((a,b)=>a+b)/N,ont=deps.filter(v=>v<=slot).length/N,p90=deps[Math.floor(.9*N)],late=deps.filter(v=>v>slot),avgLate=late.length?late.reduce((a,b)=>a+b-slot,0)/late.length:0;
+ const delayPerTurn=late.reduce((a,b)=>a+b-slot,0)/N,annual=delayPerTurn*(+$('l1turns').value)*365*(+$('l1cost').value);
+ L1={deps,crit,plan,slot,mean,N};$('l1plan').textContent=plan.toFixed(0);
+ const g=+$('l1guess').value;
+ kpis('l1k',[['Plan (averages)',plan.toFixed(1)+' min','warn'],['Simulated mean',mean.toFixed(1)+' min',mean>plan+1?'bad':'good','+'+(mean-plan).toFixed(1)+' min vs plan'],['On-time departures',Math.round(ont*100)+'%',ont<.8?'bad':'good',g?`you predicted ${g}%`:''],['P90 departure',p90.toFixed(1)+' min'],['Avg delay when late',avgLate.toFixed(1)+' min'],['Annual delay cost',naira(annual),'bad','at your turns/day']]);
+ renders.l1()}
+renders.l1=()=>{if(!L1)return runL1();const {deps,crit,plan,slot,N}=L1;const b0=25,b1=90,bins=[];for(let v=b0;v<b1;v++)bins.push({x0:v,x1:v+1,y:0,c:v+1<=slot?'#0E8A78':'#e05a4c'});deps.forEach(d=>{const i=Math.floor(d)-b0;if(i>=0&&i<bins.length)bins[i].y++});const ym=Math.max(...bins.map(b=>b.y))*1.15;
+ chart($('l1h'),{xmin:b0,xmax:b1,ymin:0,ymax:ym,bars:bins,vl:[{x:plan,c:'#C8941F',t:'Plan '+plan.toFixed(0)},{x:slot,c:'#fff',t:'Slot '+slot,dy:16}],xl:'minutes'});
+ // criticality
+ const c=$('l1c'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);const items=[['Refuelling path',crit.fue],['Catering path',crit.cat],['Cleaning path',crit.cln],['Baggage path',crit.bag]];const bh=(h-20)/items.length;
+ items.forEach((it,i)=>{const y=10+i*bh,v=it[1]/N;x.fillStyle='#9fbab3';x.font='13px Calibri';x.textAlign='left';x.fillText(it[0],0,y+bh/2+4);x.fillStyle='rgba(255,255,255,.06)';x.fillRect(120,y+6,w-180,bh-12);x.fillStyle=i===0?'#C8941F':'#2dd4bf';x.fillRect(120,y+6,(w-180)*v,bh-12);x.fillStyle='#F4F7FB';x.fillText(Math.round(v*100)+'%',120+(w-180)*v+6,y+bh/2+4)});
+ // network
+ const n=$('l1n'),nn=fit(n),X=nn.x,W=nn.w,H=nn.h;X.clearRect(0,0,W,H);const node=(t,cx,cy,col)=>{X.fillStyle=col;X.beginPath();X.roundRect(cx-52,cy-14,104,28,8);X.fill();X.fillStyle='#fff';X.font='12px Calibri';X.textAlign='center';X.fillText(t,cx,cy+4)};
+ const arr=(x1,y1,x2,y2)=>{X.strokeStyle='rgba(200,148,31,.6)';X.lineWidth=1.5;X.beginPath();X.moveTo(x1,y1);X.lineTo(x2,y2);X.stroke()};
+ const c1=W*.1+10,c2=W*.37,c3=W*.64,c4=W*.9-10,r1=H*.18,r2=H*.42,r3=H*.66,r4=H*.88;
+ arr(c1+52,r2,c2-52,r1);arr(c1+52,r2,c2-52,r2);arr(c1+52,r2,c2-52,r3);arr(c2+52,r1,c3-52,r2);arr(c2+52,r2,c3-52,r2);arr(c2+52,r3,c3-52,r2);arr(c3+52,r2,c4-52,r3);arr(c2+52,r4,c3-52,r4);arr(c3+52,r4,c4-52,r3);
+ node('Deboard 8',c1,r2,'#0B6B5E');node('Clean 10',c2,r1,'#1D4E89');node('Cater 12',c2,r2,'#1D4E89');node('Fuel 15',c2,r3,'#8a6514');node('Board 15',c3,r2,'#0B6B5E');node('Offload 12',c1+(c2-c1)/2,r4,'#6d3a8a');node('Load 14',c3,r4,'#6d3a8a');node('Push 4 ✈',c4,r3,'#C0392B')};
+$('l1run').onclick=runL1;['l1cv','l1slot','l1pd','l1imp'].forEach(i=>$(i).addEventListener('change',runL1));
+
+// ---------- LAB 2 ----------
+const CTX2={cement:{t:'The Gate: Dangote cement weighbridge',s:'Trucks arrive to load bagged cement. Each weighbridge handles one truck at a time. Drivers idle, and depot customers wait.',u:'trucks',l:20,c:2,sv:5,sc:250000,wc:15000},
+ sugar:{t:'The Gate: Golden Sugar cane intake (Numan)',s:'Out-growers\' cane trucks queue for weighing and tipping. Every hour of waiting degrades sucrose content.',u:'cane trucks',l:14,c:2,sv:7.5,sc:200000,wc:25000},
+ lfz:{t:'The Gate: Lagos Free Zone container gate',s:'Container trucks clear documentation and scanning at gate lanes. Queues spill onto the access road.',u:'trucks',l:30,c:3,sv:5.5,sc:400000,wc:20000},
+ pension:{t:'The Desk: Fidelity Pensions benefit applications',s:'Retirees\' benefit applications arrive for verification. Every officer works one file at a time. Waiting = anxious retirees and regulator scrutiny.',u:'applications',l:9,c:3,sv:18,sc:90000,wc:5000},
+ claims:{t:'The Desk: insurance claims & registrar requests',s:'Claims (Sterling, Tangerine) or shareholder requests (Coronation) arrive for processing. Service is highly variable: some files are simple, some are not.',u:'files',l:12,c:3,sv:13,sc:80000,wc:4000},
+ pilgrim:{t:'The Counter: Pilgrims Africa departure processing',s:'Pilgrims arrive for documentation, luggage and boarding checks before a charter departure.',u:'pilgrims',l:60,c:5,sv:4.5,sc:60000,wc:3000}};
+bindLabels({l2l:v=>v+'/hr',l2c:v=>v,l2s:v=>v+' min',l2cs:v=>v.toFixed(1),l2ca:v=>v.toFixed(1),l2sp:v=>v+'×'});
+let S2,paused=false,lastF=0;
+function p2(){return{lam:+$('l2l').value,c:+$('l2c').value,ts:+$('l2s').value,cs:+$('l2cs').value,ca:+$('l2ca').value}}
+function kingman(rho,c,ts,ca,cs){if(rho>=1)return Infinity;return ((ca*ca+cs*cs)/2)*Math.pow(rho,Math.sqrt(2*(c+1))-1)/(c*(1-rho))*ts}
+function reset2(){const p=p2();S2={t:0,next:lnorm(60/p.lam,p.ca),srv:Array(p.c).fill(null),q:[],served:0,ws:0,wn:0,hist:[],lastRec:0,id:0,maxq:0,done:[]}}
+function step2(tt){const p=p2();
+ while(true){let tc=Infinity,si=-1;S2.srv.forEach((s,i)=>{if(s&&s.until<tc){tc=s.until;si=i}});const te=Math.min(tc,S2.next);if(te>tt)break;S2.t=te;
+  if(tc<=S2.next){const done=S2.srv[si];S2.done.push({t:te,y:si});S2.srv[si]=null;S2.served++;if(S2.q.length){const e=S2.q.shift();S2.ws+=te-e.arr;S2.wn++;e.until=te+lnorm(p.ts,p.cs);S2.srv[si]=e}}
+  else{const e={arr:te,id:S2.id++};const f=S2.srv.indexOf(null);if(f>=0){S2.wn++;e.until=te+lnorm(p.ts,p.cs);S2.srv[f]=e}else S2.q.push(e);S2.next=te+lnorm(60/p.lam,p.ca)}}
+ S2.t=tt;while(S2.lastRec+2<=tt){S2.lastRec+=2;S2.hist.push([S2.lastRec/60,S2.q.length])}if(S2.hist.length>1200)S2.hist.splice(0,S2.hist.length-1200);S2.maxq=Math.max(S2.maxq,S2.q.length);S2.done=S2.done.filter(d=>tt-d.t<1.2*p2().ts/2+.6)}
+function draw2(){const p=p2(),ctx=CTX2[$('l2ctx').value];const c=$('l2a'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);
+ const sx=w-150,sh=Math.min(44,(h-20)/p.c-6);
+ S2.srv.forEach((s,i)=>{const y=10+i*(sh+6);x.fillStyle=s?'#0B6B5E':'rgba(255,255,255,.06)';x.beginPath();x.roundRect(sx,y,110,sh,8);x.fill();x.strokeStyle='#C8941F';x.stroke();x.fillStyle='#F4F7FB';x.font='12px Calibri';x.textAlign='center';x.fillText(s?'serving':'idle',sx+55,y+sh/2+4);
+  if(s){const pr=Math.min(1,1-(s.until-S2.t)/p.ts);x.fillStyle='#C8941F';x.fillRect(sx+6,y+sh-6,98*Math.max(0,pr),3)}});
+ S2.done.forEach(d=>{const age=(S2.t-d.t)/(p.ts/2+.5);const y=10+d.y*(sh+6)+sh/2;x.globalAlpha=Math.max(0,1-age);hexPath(x,sx+120+age*30,y,8);x.fillStyle='#2dd4bf';x.fill();x.globalAlpha=1});
+ const per=Math.floor((sx-30)/22),rows=Math.max(1,Math.floor((h-20)/22));const shown=Math.min(S2.q.length,per*rows);
+ for(let i=0;i<shown;i++){const e=S2.q[i],col=i%per,row=Math.floor(i/per);const wt=S2.t-e.arr;const hue=Math.max(0,140-wt*2.3);hexPath(x,sx-20-col*22,20+row*22,9);x.fillStyle=`hsl(${hue},70%,50%)`;x.fill()}
+ if(S2.q.length>shown){x.fillStyle='#ff8a7a';x.font='bold 14px Calibri';x.textAlign='left';x.fillText('+'+(S2.q.length-shown)+' more',8,h-8)}
+ x.fillStyle='#9fbab3';x.font='12px Calibri';x.textAlign='left';x.fillText(`t = ${Math.floor(S2.t/60)}h ${String(Math.floor(S2.t%60)).padStart(2,'0')}m · queue colour = time waiting (green → red at 60 min)`,8,h-8-(S2.q.length>shown?18:0));
+ const rho=p.lam*p.ts/(60*p.c),kw=kingman(rho,p.c,p.ts,p.ca,p.cs),aw=S2.wn?S2.ws/S2.wn:0;const hrs=12;
+ const costS=p.c*(+$('l2sc').value),costW=p.lam*hrs*(isFinite(kw)?kw:600)/60*(+$('l2wc').value);
+ kpis('l2k',[['Utilisation ρ',Math.round(rho*100)+'%',rho>=1?'bad':rho>.85?'warn':'good',rho>=1?'UNSTABLE: queue grows forever':''],['Avg wait (simulated)',fmt(aw,1)+' min',aw>30?'bad':'',fmt(S2.served)+' '+ctx.u+' served'],['Kingman forecast',isFinite(kw)?fmt(kw,1)+' min':'∞','warn'],['In queue now',S2.q.length,'', 'max '+S2.maxq],['Daily cost (12h)',naira(costS+costW),'',`servers ${naira(costS)} · waiting ${naira(costW)}`]]);
+ const hs=S2.hist,t1=Math.max(1,S2.t/60),t0=Math.max(0,t1-12);chart($('l2q'),{xmin:t0,xmax:t1,ymin:0,ymax:Math.max(5,...hs.filter(v=>v[0]>=t0).map(v=>v[1]))*1.15,series:[{pts:hs.filter(v=>v[0]>=t0),c:'#C8941F',fill:'rgba(200,148,31,.15)'}],xl:'hours'});
+ const pts=[];for(let r=.3;r<.985;r+=.01)pts.push([r*100,kingman(r,p.c,p.ts,p.ca,p.cs)]);const ym=Math.max(kingman(.95,p.c,p.ts,p.ca,p.cs),isFinite(kw)?kw*1.2:0,10);
+ const pts2=[];for(let r=.3;r<.985;r+=.01)pts2.push([r*100,kingman(r,p.c,p.ts,p.ca/2,p.cs/2)]);
+ chart($('l2kc'),{xmin:30,xmax:100,ymin:0,ymax:ym,series:[{pts:pts2,c:'#2dd4bf',w:1.5,dash:[4,4]},{pts,c:'#C8941F'}],dots:[{x:Math.min(rho,.99)*100,y:isFinite(kw)?kw:ym,c:rho>=1?'#e05a4c':'#fff',t:'you'}],xl:'utilisation %',hl:[]});
+}
+function loop2(ts){const dt=Math.min(.1,(ts-lastF)/1000);lastF=ts;if(current==='l2'&&!paused){step2(S2.t+dt*(+$('l2sp').value));draw2()}requestAnimationFrame(loop2)}
+function setCtx2(){const c=CTX2[$('l2ctx').value];$('l2title').textContent=c.t;$('l2sub').textContent=c.s+' Dashed teal line on the hockey-stick chart = same system with variability halved.';$('l2l').value=c.l;$('l2c').value=c.c;$('l2s').value=c.sv;$('l2sc').value=c.sc;$('l2wc').value=c.wc;['l2l','l2c','l2s'].forEach(i=>$(i).dispatchEvent(new Event('input')));reset2()}
+$('l2ctx').onchange=setCtx2;$('l2c').addEventListener('change',reset2);$('l2reset').onclick=reset2;$('l2pause').onclick=()=>{paused=!paused;$('l2pause').textContent=paused?'▶ Play':'❚❚ Pause'};
+renders.l2=()=>{S2||reset2();draw2()};setCtx2();requestAnimationFrame(loop2);
+
+// ---------- LAB 3 ----------
+bindLabels({l3L:v=>v+' wk',l3a:v=>v.toFixed(2),l3b:v=>v.toFixed(2),l3t:v=>v.toFixed(2)});
+let noiseSeed=[];for(let i=0;i<60;i++)noiseSeed.push(gauss());
+function runL3(){const L=+$('l3L').value,aS=+$('l3a').value,beta=+$('l3b').value,th=+$('l3t').value,share=$('l3share').checked,pat=$('l3pat').value,W=52,cover=2;
+ const dem=t=>{let d=100;if((pat==='pulse'||pat==='fest')&&t>=8&&t<13)d=140;if(pat==='step'&&t>=8)d=120;if(pat==='noise'||pat==='fest')d+=10*noiseSeed[t];return Math.max(0,d)};
+ const E=4,I=Array(E).fill(cover*100),SL=Array(E).fill(L*100),F=Array(E).fill(100),pipe=[...Array(E)].map(()=>Array(L).fill(100)),O=[...Array(E)].map(()=>[]),INV=[...Array(E)].map(()=>[]),D=[];let cost=0;
+ for(let t=0;t<W;t++){const cd=dem(t);D.push(cd);for(let e=0;e<E;e++){const inc=e===0?cd:O[e-1][t];const arr=pipe[e].shift();I[e]+=arr;SL[e]-=arr;I[e]-=inc;const sig=share?cd:inc;F[e]+=th*(sig-F[e]);
+  const o=Math.max(0,F[e]+aS*(cover*F[e]-I[e])+aS*beta*(L*F[e]-SL[e]));pipe[e].push(o);SL[e]+=o;O[e].push(o);INV[e].push(I[e]);cost+=I[e]>0?I[e]:-2*I[e]}}
+ const v=a=>{const m=a.reduce((x,y)=>x+y)/a.length;return a.reduce((x,y)=>x+(y-m)**2,0)/a.length};const bw=v(O[3])/Math.max(v(D),1e-6);const pk=Math.max(...O[3]),pkD=Math.max(...D);const g=+$('l3guess').value;
+ kpis('l3k',[['Shopper peak',fmt(pkD)+' (+'+fmt(pkD-100)+'%)'],['Factory peak order',fmt(pk)+' (+'+fmt(pk-100)+'%)',pk>pkD*1.3?'bad':'good',g?`you predicted +${g}%`:''],['Bullwhip ratio',fmt(bw,1)+'×',bw>3?'bad':bw>1.5?'warn':'good','var(factory orders) ÷ var(demand)'],['Worst retail shelf',fmt(Math.min(...INV[0])),Math.min(...INV[0])<0?'bad':'good','units (negative = backlog)'],['Chain cost index',fmt(cost/1000,1)+'k','','holding + 2× backlog']]);
+ const cols=['#2dd4bf','#4a86d0','#C8941F','#e05a4c'],ser=O.map((o,e)=>({pts:o.map((y,t)=>[t,y]),c:cols[e],w:e===3?3:2}));ser.unshift({pts:D.map((y,t)=>[t,y]),c:'#fff',w:2.5});
+ const ym=Math.max(...O.flat(),...D)*1.1;chart($('l3o'),{xmin:0,xmax:51,ymin:0,ymax:ym,series:ser,xl:'week',shade:(pat==='pulse'||pat==='fest')?[{x0:8,x1:13,c:'rgba(200,148,31,.08)'}]:[]});
+ const iv=INV.flat();chart($('l3i'),{xmin:0,xmax:51,ymin:Math.min(0,...iv)*1.1,ymax:Math.max(...iv)*1.1,series:INV.map((o,e)=>({pts:o.map((y,t)=>[t,y]),c:cols[e]})),hl:[{y:0,c:'rgba(255,255,255,.4)'}],xl:'week'})}
+renders.l3=runL3;['l3L','l3a','l3b','l3t','l3share','l3pat'].forEach(i=>$(i).addEventListener('input',runL3));
+const set3=(L,a,b,t,s)=>{$('l3L').value=L;$('l3a').value=a;$('l3b').value=b;$('l3t').value=t;$('l3share').checked=s;['l3L','l3a','l3b','l3t'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL3()};
+$('l3p1').onclick=()=>set3(3,.3,.35,.3,false);$('l3p2').onclick=()=>set3(3,.2,1,.15,true);
+
+// ---------- LAB 4 ----------
+const CTX4={esp:{b:2.5,e:420,l:45,fc:18,fd:5,pc:4,pd:.5},comp:{b:1.8,e:600,l:80,fc:35,fd:7,pc:8,pd:1},kiln:{b:3,e:500,l:110,fc:40,fd:4,pc:10,pd:1},gse:{b:1.1,e:250,l:3,fc:1.5,fd:2,pc:.6,pd:.3},press:{b:2.2,e:700,l:60,fc:60,fd:10,pc:12,pd:2}};
+bindLabels({l4b:v=>v.toFixed(1),l4e:v=>v+' d',l4T:v=>v+' d',l4l:v=>'₦'+v+'m',l4d:v=>Math.round(v*100)+'%'});
+function bt(){const b=+$('l4b').value;$('l4bt').innerHTML=b<0.95?'β<1 · <b class="bad">infant mortality</b>: failures decline with age':b<=1.15?'β≈1 · <b class="warn">random failures</b>: age does not matter':'β>1 · <b class="good">wear-out</b>: risk rises with age'}
+$('l4b').addEventListener('input',bt);bt();
+function p4(){return{b:+$('l4b').value,e:+$('l4e').value,lm:+$('l4l').value,fc:+$('l4fc').value,fd:+$('l4fd').value,pc:+$('l4pc').value,pd:+$('l4pd').value,det:+$('l4d').value}}
+function costRate(p,T,pol,n=3000){let C=0,Lt=0;const fC=p.fc+p.fd*p.lm,pC=p.pc+p.pd*p.lm;for(let i=0;i<n;i++){const x=weib(p.b,p.e);
+ if(pol==='pm'&&T<x){C+=pC;Lt+=T+p.pd}else if(pol==='cbm'&&rnd()<p.det){C+=pC;Lt+=x*.95+p.pd}else{C+=fC;Lt+=x+p.fd}}
+ return C/Lt*365+(pol==='cbm'?1.5:0)}
+function runL4(){const p=p4(),T=+$('l4T').value;const curve=[];let best=[0,Infinity];for(let t=30;t<=1000;t+=20){const c=costRate(p,t,'pm',1500);curve.push([t,c]);if(c<best[1])best=[t,c]}
+ const rtf=costRate(p,0,'rtf',6000),cbm=costRate(p,0,'cbm',6000),cur=costRate(p,T,'pm',6000);
+ const ym=Math.max(rtf,cbm,...curve.map(c=>c[1]))*1.1;
+ chart($('l4c'),{xmin:30,xmax:1000,ymin:0,ymax:ym,series:[{pts:curve,c:'#C8941F',w:2.5}],hl:[{y:rtf,c:'#e05a4c',t:'Run to failure '+fmt(rtf,1)},{y:cbm,c:'#2dd4bf',t:'Condition-based '+fmt(cbm,1)}],vl:[{x:T,c:'#fff',t:'your T'}],dots:[{x:best[0],y:best[1],c:'#C8941F',t:'optimum T≈'+best[0]+'d'}],xl:'PM interval (days)'});
+ const bestAll=Math.min(rtf,cbm,best[1]),fleet=24;
+ kpis('l4k',[['Run to failure',naira(rtf*1e6),'','per asset-year'],['PM at your T',naira(cur*1e6),cur<rtf?'good':'bad',cur<rtf?'saves '+naira((rtf-cur)*1e6):'COSTS '+naira((cur-rtf)*1e6)+' more'],['Best PM interval',best[1]<rtf*.98?best[0]+' days':'never do PM',best[1]<rtf*.98?'good':'bad',naira(best[1]*1e6)],['Condition-based',naira(cbm*1e6),cbm<=bestAll+.01?'good':'','incl. ₦1.5m/yr sensors'],['Fleet prize (24 assets)',naira((rtf-bestAll)*1e6*fleet),'good','per year vs run-to-failure']]);
+ drawFleet(p,T)}
+function drawFleet(p,T){const pol=$('l4pol').value,c=$('l4t'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);const N=24,H=1095,m=40,rh=(h-24)/N;
+ x.fillStyle='#9fbab3';x.font='11px Calibri';x.textAlign='center';for(let y=0;y<=3;y++){const px=m+(w-m-10)*y/3;x.fillText('Y'+y,px,h-6);x.strokeStyle='rgba(255,255,255,.06)';x.beginPath();x.moveTo(px,0);x.lineTo(px,h-18);x.stroke()}
+ let nf=0,np=0;for(let i=0;i<N;i++){const y=4+i*rh+rh/2;x.fillStyle='rgba(255,255,255,.05)';x.fillRect(m,y-rh/2+2,w-m-10,rh-4);x.fillStyle='#9fbab3';x.textAlign='right';x.fillText('#'+(i+1),m-6,y+4);
+  let t=0;while(t<H){const life=weib(p.b,p.e);let ev,dt,dn;if(pol==='pm'&&T<life){ev='p';dt=T;dn=p.pd}else if(pol==='cbm'&&rnd()<p.det){ev='p';dt=life*.95;dn=p.pd}else{ev='f';dt=life;dn=p.fd}t+=dt;if(t>H)break;const px=m+(w-m-10)*t/H;
+   if(ev==='f'){nf++;x.fillStyle='#e05a4c';x.beginPath();x.arc(px,y,Math.min(5,rh/2-1),0,7);x.fill();x.fillStyle='rgba(224,90,76,.35)';x.fillRect(px,y-rh/2+3,(w-m-10)*dn/H,rh-6)}else{np++;x.fillStyle='#4a86d0';x.save();x.translate(px,y);x.rotate(Math.PI/4);const s=Math.min(6,rh/2);x.fillRect(-s/2,-s/2,s,s);x.restore()}t+=dn}}
+ x.fillStyle='#F4F7FB';x.textAlign='right';x.font='bold 13px Calibri';x.fillText(`${nf} failures · ${np} planned interventions`,w-12,14)}
+renders.l4=runL4;$('l4run').onclick=runL4;['l4b','l4e','l4T','l4l','l4d','l4pol','l4fc','l4fd','l4pc','l4pd'].forEach(i=>$(i).addEventListener('change',runL4));
+$('l4ctx').onchange=()=>{const c=CTX4[$('l4ctx').value];$('l4b').value=c.b;$('l4e').value=c.e;$('l4l').value=c.l;$('l4fc').value=c.fc;$('l4fd').value=c.fd;$('l4pc').value=c.pc;$('l4pd').value=c.pd;['l4b','l4e','l4l'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL4()};
+
+// ---------- LAB 5 ----------
+const CTX5=[{u:'reels',m:40,cv:.25,L:45,p:.25,val:2500000},{u:'tonnes',m:20,cv:.2,L:40,p:.3,val:3200000},{u:'rolls',m:150,cv:.35,L:30,p:.2,val:180000},{u:'units',m:30,cv:.5,L:60,p:.3,val:900000}];
+bindLabels({l5m:v=>v+'/day',l5cv:v=>v.toFixed(2),l5L:v=>v+' d',l5p:v=>Math.round(v*100)+'%',l5s:v=>v+' d',l5q:v=>v+' d'});
+function sim5(sD,qD,pd,days,keep){const mu=+$('l5m').value,cv=+$('l5cv').value,L=+$('l5L').value;const s=sD*mu,Q=qD*mu;let inv=s+Q,oo=[],short=0,dem=0,invSum=0,so=0,orders=0;const path=[];
+ for(let d=0;d<days;d++){oo=oo.filter(o=>{if(o.a<=d){inv+=o.q;return false}return true});const x=Math.max(0,mu*(1+cv*gauss()));dem+=x;if(inv>=x)inv-=x;else{short+=x-inv;inv=0}if(inv<=0)so++;invSum+=inv;
+  const pos=inv+oo.reduce((a,o)=>a+o.q,0);if(pos<=s){const lt=Math.max(3,L*(1+.15*gauss()))+(rnd()<pd?14+rnd()*28:0);oo.push({a:d+Math.round(lt),q:Q});orders++;if(keep)path.push({o:d,a:d+Math.round(lt),late:lt>L*1.4})}
+  if(keep)path.push({d,inv})}
+ return{fill:1-short/dem,so:so/(days/365),avg:invSum/days,orders:orders/(days/365),path}}
+function runL5(){const sD=+$('l5s').value,qD=+$('l5q').value,pd=+$('l5p').value,mu=+$('l5m').value,ctx=CTX5[+$('l5ctx').value];
+ const r=sim5(sD,qD,pd,365*100,false),one=sim5(sD,qD,pd,365+120,true),calm=sim5(sD,qD,0,365*100,false);
+ const val=ctx.val,hold=r.avg*val*.25,ordC=r.orders*15e6,shortC=(1-r.fill)*mu*365*val*3;
+ const g=+$('l5guess').value;
+ kpis('l5k',[['Fill rate',fmt(r.fill*100,1)+'%',r.fill>=.98?'good':r.fill>=.93?'warn':'bad','calm world: '+fmt(calm.fill*100,1)+'%'],['Stock-out days / yr',fmt(r.so,1),r.so>5?'bad':'good'],['Average stock',fmt(r.avg/mu,0)+' days','',fmt(r.avg)+' '+ctx.u],['Annual cost',naira(hold+ordC+shortC),'',`hold ${naira(hold)} · short ${naira(shortC)}`],['Orders / yr',fmt(r.orders,1),'','₦15m per import cycle']]);
+ const pts=one.path.filter(p=>p.inv!==undefined&&p.d>=120).map(p=>[p.d-120,p.inv/mu]);const shade=[];pts.forEach(p=>{if(p[1]<=0)shade.push({x0:p[0],x1:p[0]+1,c:'rgba(224,90,76,.45)'})});
+ const ords=one.path.filter(p=>p.o!==undefined&&p.a>=120);
+ chart($('l5p1'),{xmin:0,xmax:365,ymin:0,ymax:Math.max(sD+qD,...pts.map(p=>p[1]))*1.1,shade,series:[{pts,c:'#2dd4bf',fill:'rgba(45,212,191,.12)'}],hl:[{y:sD,c:'#C8941F',t:'reorder point s'}],dots:ords.filter(o=>o.late&&o.a-120<365).map(o=>({x:o.a-120,y:0,c:'#e05a4c',r:4})),xl:'day',yf:v=>fmt(v)+'d'});
+ renders.curve5()}
+renders.curve5=()=>{const pd=+$('l5p').value,qD=+$('l5q').value,sD=+$('l5s').value;const a=[],b=[];for(let s=0;s<=120;s+=5){a.push([s,sim5(s,qD,0,365*15,false).fill*100]);b.push([s,sim5(s,qD,pd,365*15,false).fill*100])}
+ chart($('l5c'),{xmin:0,xmax:120,ymin:Math.max(0,Math.min(...b.map(v=>v[1]))-2),ymax:100.5,series:[{pts:a,c:'#2dd4bf'},{pts:b,c:'#e05a4c'}],hl:[{y:98,c:'rgba(255,255,255,.5)',t:'98%'}],vl:[{x:sD,c:'#C8941F'}],xl:'reorder point (days of cover)'})};
+function opt5(){const qD=+$('l5q').value,pd=+$('l5p').value;let calmS=null,riskS=null;for(let s=0;s<=150;s++){if(calmS===null&&sim5(s,qD,0,365*40,false).fill>=.98)calmS=s;if(riskS===null&&sim5(s,qD,pd,365*40,false).fill>=.98)riskS=s;if(calmS!==null&&riskS!==null)break}
+ if(riskS===null)riskS=150;$('l5s').value=riskS;$('l5s').dispatchEvent(new Event('input'));runL5();const mu=+$('l5m').value,ctx=CTX5[+$('l5ctx').value];
+ $('l5insight').classList.add('on');$('l5insight').innerHTML=`<b>Result:</b> 98% fill needs <b>s = ${riskS} days</b> of cover with disruptions vs <b>${calmS} days</b> in a calm world. The <b>resilience premium is ${riskS-calmS} days</b> ≈ ${fmt((riskS-calmS)*mu)} ${ctx.u} ≈ <b>${naira((riskS-calmS)*mu*ctx.val)}</b> of working capital, plus ~${naira((riskS-calmS)*mu*ctx.val*.25)}/yr to carry it.${$('l5guess').value?` You predicted ${$('l5guess').value} extra days.`:''}<br><br>Disruptions fatten the tail, and the tail sets your buffer. Put this number beside the cost of dual sourcing or a bonded LFZ warehouse.`}
+renders.l5=runL5;{const c=CTX5[0];$('l5m').value=c.m;$('l5cv').value=c.cv;$('l5L').value=c.L;$('l5p').value=c.p;['l5m','l5cv','l5L','l5p'].forEach(i=>$(i).dispatchEvent(new Event('input')));}$('l5run').onclick=runL5;$('l5opt').onclick=opt5;['l5m','l5cv','l5L','l5p','l5s','l5q'].forEach(i=>$(i).addEventListener('change',runL5));
+$('l5ctx').onchange=()=>{const c=CTX5[+$('l5ctx').value];$('l5m').value=c.m;$('l5cv').value=c.cv;$('l5L').value=c.L;$('l5p').value=c.p;['l5m','l5cv','l5L','l5p'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL5()};
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Participant Book · Analytics for Operations · DACMO 2026 · LBS</title><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<style>
+:root{--bg:#06201A;--gold:#C8941F;--teal:#0B6B5E;--slate:#33485C;--line:#DDE6EF}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#F4F7FB;color:var(--slate);font-family:Calibri,Carlito,"Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.6}
+.rule{height:6px;background:var(--gold)}
+header{background:var(--bg);color:#F4F7FB;padding:14px 5vw;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5}
+header a{color:#F4F7FB;text-decoration:none}header .sp{margin-left:auto;display:flex;gap:10px}
+header .sp a{font-size:14px;padding:7px 12px;border-radius:9px;border:1px solid rgba(200,148,31,.5);color:var(--gold);font-weight:700}
+header .sp a.g{background:var(--gold);color:var(--bg)}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:40px;max-width:1180px;margin:0 auto;padding:40px 5vw}
+aside{position:sticky;top:80px;align-self:start;border-left:10px solid var(--teal);padding-left:16px}
+aside b{display:block;color:var(--gold);letter-spacing:3px;font-size:12px;margin-bottom:8px}
+aside a{display:block;color:var(--slate);text-decoration:none;font-size:15px;padding:5px 0;border-bottom:1px solid var(--line)}
+aside a:hover{color:var(--teal)}
+main{background:#fff;border:1px solid var(--line);border-radius:18px;padding:40px 48px;box-shadow:0 4px 18px rgba(6,32,26,.05)}
+h1{color:var(--bg);font-size:40px;line-height:1.1;margin:0 0 6px}
+h2{color:var(--bg);font-size:28px;margin:48px 0 10px;padding-top:12px;border-top:3px solid var(--gold);scroll-margin-top:80px}
+h3{color:var(--teal);font-size:21px;margin:28px 0 6px}
+strong{color:var(--bg)}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:16px}
+th{background:var(--bg);color:#fff;text-align:left;padding:8px 10px}td{border:1px solid var(--line);padding:8px 10px;vertical-align:top}
+tr:nth-child(even) td{background:#F7FAFC}
+ol li,ul li{margin:4px 0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:static}main{padding:24px}}
+@media print{header,aside{display:none}.layout{display:block;padding:0}main{border:0;box-shadow:none;padding:0}body{background:#fff;font-size:12pt}h2{break-before:page}}
+</style></head><body><div class="rule"></div>
+<header><a href="../"><img src="../assets/mark.svg" width="30" height="34" alt="bongo.ai" style="vertical-align:middle"> <b>Analytics for Operations</b></a>
+<div class="sp"><a href="../lab/">Open the Lab</a><a href="../downloads/DACMO-Participant-Book.pdf" class="g">⬇ PDF</a></div></header>
+<div class="layout"><aside><b>CONTENTS</b><a href="#how-to-use-this-book">How to use this book</a><a href="#six-ideas-in-plain-words">Six ideas in plain words</a><a href="#lab-1-the-45-minute-turnaround">Lab 1: The 45-Minute Turnaround</a><a href="#lab-2-the-gate">Lab 2: The Gate</a><a href="#lab-3-december-demand-shock">Lab 3: December Demand Shock</a><a href="#lab-4-the-asset-fleet">Lab 4: The Asset Fleet</a><a href="#lab-5-the-import-lifeline">Lab 5: The Import Lifeline</a><a href="#your-toolkit-canvas-five-questions-self-check-and-glossary">Your toolkit: canvas, five questions, self-check and glossary</a></aside><main><h1 id="participant-book-analytics-for-operations">Participant Book: Analytics for Operations</h1>
+<p><em>DACMO 2026 · Lagos Business School · Prof Bongo Adi</em></p>
+<h2 id="how-to-use-this-book">How to use this book</h2>
+<p>You need no statistics, no coding and no spreadsheet skills for today. If you can read a bar chart and move a slider, you have everything you need. This book walks you through five short simulations, each built around an operation that looks like yours: an aircraft turnaround, a truck gate or service desk, a festive demand spike, a fleet of pumps, and an imported input that sometimes arrives late.</p>
+<p>Give yourself about 40 minutes in total. Here is the route:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What you do</th>
+<th>Minutes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Six ideas in plain words</td>
+<td>Read the six building blocks</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Lab 1: The 45-Minute Turnaround</td>
+<td>Predict, run, read the result</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Lab 2: The Gate</td>
+<td>Watch a live queue, find the tipping point</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Lab 3: December Demand Shock</td>
+<td>Break a supply chain, then fix it</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Lab 4: The Asset Fleet</td>
+<td>Choose a maintenance strategy</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Lab 5: The Import Lifeline</td>
+<td>Price your resilience</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Toolkit and self-check</td>
+<td>Canvas, five questions, quiz</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Opening the lab.</strong> Open the Simulation Lab from this site (or the file <strong>DACMO-Operations-Simulation-Lab.html</strong>) in Chrome or Edge. No internet is needed once it is open. Along the top you will see six hexagon buttons: Home and Labs 1 to 5. You can also press the number keys 0 to 5 on your keyboard to jump between them.</p>
+<p><strong>The one habit that matters: Predict, Run, Explain, Decide.</strong> Every lab has a yellow box marked "Predict first". Before you press any Run button, type your honest guess into it. It does not matter if you are wrong; in fact, being wrong is the point. The gap between your gut feeling and what the simulation shows is exactly where the learning happens. Then run the simulation, try to explain the gap in one sentence, and decide what you would change in real life.</p>
+<p><strong>What every lab screen has.</strong> On the left: sliders and boxes you can change. Across the top: score tiles showing the results in minutes, percentages and naira. In the middle: charts that update when you change something. At the bottom: a "Reveal the insight" button. Press it only after you have tried to explain the result yourself.</p>
+<p><strong>About the naira figures.</strong> The costs in the lab are reasonable starting assumptions, not facts about your company. Change them to your own numbers. The lessons hold either way; only the size of the prize changes.</p>
+<h2 id="six-ideas-in-plain-words">Six ideas in plain words</h2>
+<p>Everything today rests on six simple ideas. Read them slowly once; the labs will make them stick.</p>
+<p><strong>1. An average hides the spread.</strong> If a task "takes 15 minutes on average", some days it takes 11 and some days 22. The average is one number; reality is a range. Planning on the average alone is like planning a Lagos commute on the average traffic: you will be late a lot.</p>
+<p><strong>2. Variability is how wide that spread is.</strong> We measure it with a number called the <strong>CV</strong> (coefficient of variation). Think of it as "typical wobble as a share of the average". A CV of 0.3 means a 15-minute task often lands anywhere from about 10 to 20 minutes. A CV of 0 means it is perfectly predictable, like a machine on a fixed cycle.</p>
+<p><strong>3. A distribution is the full picture of what could happen.</strong> Instead of saying "turnaround takes 42 minutes", a distribution says "usually 38 to 50, occasionally 60". In the lab you will see it as a histogram: a bar chart where each bar counts how often a result happened.</p>
+<p><strong>4. A simulation is a rehearsal of the future, many times over.</strong> The computer plays out your operation 1,000 times, each time drawing realistic random task times, arrivals or failures. Then it counts what happened. You are not predicting one future; you are seeing the whole range of futures and how often each one occurs. Analysts call this <strong>Monte Carlo</strong> simulation, after the casino.</p>
+<p><strong>5. Utilisation is how busy a resource is.</strong> If a weighbridge could handle 24 trucks an hour and 18 arrive, it is 75% utilised. Managers love high utilisation because idle resources look wasteful. You are about to discover why, beyond about 85%, high utilisation becomes very expensive.</p>
+<p><strong>6. Feedback and delay: decisions change the future, slowly.</strong> When you order stock, it arrives weeks later. Meanwhile you look at your shelves, see they are still empty, and order again. Your own past decisions come back to you after a delay. That loop, not bad luck, causes many of the swings you see in operations.</p>
+<p>If you remember only one sentence from today, make it this: <strong>your plan runs on averages, but your operation lives in the variance.</strong></p>
+<h2 id="lab-1-the-45-minute-turnaround">Lab 1: The 45-Minute Turnaround</h2>
+<p><strong>The story.</strong> It is 06:40 at Murtala Muhammed Airport. A narrow-body aircraft has just parked. Before it can push back, seven ground jobs must happen. Passengers get off, then cleaning, catering and refuelling happen side by side, then new passengers board. At the same time, the baggage team unloads and reloads the hold. The airline has given the ground handler a 45-minute slot.</p>
+<p><strong>The idea you will learn: the Flaw of Averages.</strong> Add up the averages and the plan says 42 minutes, so 45 looks safe. But look closely: boarding cannot start until the <em>slowest</em> of cleaning, catering and refuelling is done. On a day when refuelling is quick but catering is slow, you wait for catering. When several jobs run side by side, you always wait for whichever happens to be slowest that day. So the real average is longer than the plan, even when nothing goes wrong. That is not bad luck; it is arithmetic.</p>
+<p><strong>Step by step (6 minutes)</strong></p>
+<ol>
+<li>Press <strong>1</strong> to open the lab. Read the top tile: "Plan (averages) 42.0 min".</li>
+<li>In the yellow box, type your guess: what percentage of flights leave within 45 minutes?</li>
+<li>Press <strong>Run 1,000 turnarounds</strong>.</li>
+<li>Look at the <strong>On-time departures</strong> tile and compare it with your guess. Most people guess 85 to 95%. The simulation usually says around 60%.</li>
+<li>Look at the histogram. Green bars are flights that made the slot; red bars are late. The gold dashed line is the plan; the white line is the slot. Notice how much of the shape sits to the right of the plan.</li>
+<li>Look at the <strong>Criticality index</strong> chart. It shows how often each path was the one that held up departure. Refuelling looks like the obvious bottleneck on paper, yet other paths cause delay a large share of the time.</li>
+<li>Use <strong>Invest to cut one task by 20%</strong>. Try refuelling, then boarding, then baggage. Watch which choice moves on-time performance the most.</li>
+<li>Move <strong>Ground crew / GSE late</strong> up to 30% and watch the red tail grow.</li>
+</ol>
+<p><strong>What to notice.</strong> The plan is not just uncertain, it is biased early. And the task that looks critical on the Gantt chart is not always the one to fix.</p>
+<p><strong>Apply it to your work.</strong> Where in your operation must several things finish before the next step starts? Think of a month-end close waiting for every branch, a well start-up waiting for permits and equipment, or a benefits payment waiting for three verifications. Your plan for that step is probably too optimistic, by more than you think.</p>
+<h2 id="lab-2-the-gate">Lab 2: The Gate</h2>
+<p><strong>The story.</strong> Trucks arrive at a Dangote cement depot to load. There are two weighbridges, and each handles one truck at a time. Trucks do not arrive evenly: sometimes three come together, then none for ten minutes. Some trucks clear in three minutes, some take nine. The same pattern appears at a Golden Sugar cane intake, the Lagos Free Zone gate, a pension benefits desk, a claims desk or a pilgrim check-in counter. Pick the one closest to your work from the <strong>Context</strong> menu.</p>
+<p><strong>The idea you will learn: Kingman's law.</strong> How long people wait in a queue depends on three things multiplied together: <strong>Wait ≈ Variability × Utilisation effect × Service time</strong>. The variability part is (ca² + cs²) ÷ 2, where ca is how unpredictable arrivals are and cs how unpredictable service is. The utilisation effect is u ÷ (1 − u).</p>
+<p>You do not need to calculate it. Just notice the utilisation effect, u ÷ (1 − u). At 50% busy it equals 1. At 80% it equals 4. At 90% it equals 9. At 95% it equals 19. So waiting does not grow steadily as you get busier; it shoots up like a hockey stick. The variability part says that the more unpredictable the arrivals and service times, the longer the wait.</p>
+<p><strong>Step by step (7 minutes)</strong></p>
+<ol>
+<li>Press <strong>2</strong>. Choose your context. The live floor starts running: coloured hexagons are trucks or customers waiting, green when they have just arrived and red after an hour.</li>
+<li>Read the <strong>Utilisation</strong> tile. Type your guess in the yellow box: at 90% utilisation, how many minutes will the average wait be?</li>
+<li>Slowly drag <strong>Arrivals per hour</strong> up, one step at a time. Watch utilisation climb and the queue on the floor.</li>
+<li>Push utilisation past 90%. Watch the queue chart and the hexagons turn red. Compare <strong>Avg wait (simulated)</strong> with <strong>Kingman forecast</strong>; they should be close once the simulation has run a while.</li>
+<li>Look at the <strong>hockey stick</strong> chart. The white dot is you. The dashed teal curve is the same system with half the variability.</li>
+<li>Now fix it two ways. First, add a server. Then press Reset, go back, and instead lower <strong>Service variability</strong> from 0.8 to 0.3. Compare the two using the <strong>Daily cost</strong> tile.</li>
+</ol>
+<p><strong>What to notice.</strong> Going from 80% to 90% busy roughly doubles waiting time. Cutting variability, through scheduled slots, standard work or digital pre-checks, can do as much good as buying another weighbridge or hiring another officer, usually for far less money.</p>
+<p><strong>Apply it to your work.</strong> Which resource in your organisation is proudly running at over 90%? A desk, a crane, a maintenance crew, an approvals officer? The queue behind it is probably costing more than the idle time you would need to cure it.</p>
+<h2 id="lab-3-december-demand-shock">Lab 3: December Demand Shock</h2>
+<p><strong>The story.</strong> A snack or sugar brand reaches shoppers through four links: open-market retailers buy from a distributor, the distributor buys from a regional depot, and the depot buys from the factory. Each link orders once a week, and every order takes about three weeks to arrive. Then the festive season comes and shoppers buy 40% more for five weeks.</p>
+<p><strong>The idea you will learn: the bullwhip effect.</strong> Picture cracking a whip. A small flick of the wrist becomes a huge snap at the tip. In a supply chain, a small change in what shoppers buy becomes a huge swing in what the factory is asked to make. Nobody is being foolish. Each link sees its shelves emptying and orders extra to catch up. Because deliveries take weeks, the shelves stay empty for a while, so it orders extra <em>again</em>, forgetting the stock already on the way. Each link passes a bigger, noisier signal up the chain.</p>
+<p>Three things make the whip worse: long delays, ignoring orders already in transit (the <strong>pipeline</strong>), and each link guessing demand from the orders it receives rather than from real shopper sales.</p>
+<p><strong>Step by step (7 minutes)</strong></p>
+<ol>
+<li>Press <strong>3</strong>. Pick your context. Leave the pattern on "Festive pulse".</li>
+<li>In the yellow box: shoppers' demand peaks 40% above normal. What peak do you think the factory will see?</li>
+<li>Click <strong>Typical manager</strong>. Look at the top chart. The white line is shoppers. The red line is the factory. Read the <strong>Factory peak order</strong> tile; it is often around +480%.</li>
+<li>Read the <strong>Bullwhip ratio</strong> tile. It compares how much factory orders swing with how much shopper demand swings. The bigger it is, the worse the whip.</li>
+<li>Change one thing at a time and watch the ratio: slide <strong>Attention to pipeline</strong> up to 1.0, then tick <strong>Share shopper (POS) data upstream</strong>, then shorten the <strong>lead time</strong> to 1 week.</li>
+<li>Click <strong>Disciplined planner</strong>. Watch the whip almost disappear.</li>
+<li>Look at the bottom chart. Negative inventory means empty shelves and unfilled orders.</li>
+</ol>
+<p><strong>What to notice.</strong> The chaos comes from the structure (delays plus ordering rules), not from the shoppers. The cheapest cure is usually not a faster truck but a better rule: count what is already on the way, and share real sales data along the chain.</p>
+<p><strong>Apply it to your work.</strong> Does your production, procurement or staffing plan react to the orders in front of you or to real end demand? Who in your chain could share sell-out data with you, and what would it take?</p>
+<h2 id="lab-4-the-asset-fleet">Lab 4: The Asset Fleet</h2>
+<p><strong>The story.</strong> You look after 24 critical machines: well pumps, gas compressors, a kiln fan, airport tractors or a banknote press. When one fails unexpectedly, you pay for the repair <em>and</em> for days of lost production. You have three choices. You can <strong>run to failure</strong> (fix it when it breaks). You can do <strong>preventive maintenance</strong> (service it every so many days, whether it needs it or not). Or you can do <strong>condition-based maintenance</strong> (use sensors to spot trouble early and fix it just before it fails).</p>
+<p><strong>The idea you will learn: how things fail decides how to maintain them.</strong> Engineers describe failure patterns with one number, the <strong>Weibull shape β</strong> (say "beta"). You only need three cases:</p>
+<table>
+<thead>
+<tr>
+<th>β</th>
+<th>What it means in plain words</th>
+<th>What works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Below 1</td>
+<td>New machines fail most; survivors get more reliable (bad installation, early defects)</td>
+<td>Better installation and testing. Routine servicing makes it worse, because it keeps resetting machines to "new"</td>
+</tr>
+<tr>
+<td>About 1</td>
+<td>Failures strike at random, like a stone hitting a windscreen; age does not matter</td>
+<td>Calendar servicing is wasted money. Only early-warning sensors help</td>
+</tr>
+<tr>
+<td>Above 1</td>
+<td>Machines wear out; the older they get, the riskier</td>
+<td>There is a best servicing interval, or use sensors</td>
+</tr>
+</tbody>
+</table>
+<p>The second number, <strong>characteristic life η</strong> (say "eta"), is roughly how long a typical machine lasts.</p>
+<p><strong>Step by step (6 minutes)</strong></p>
+<ol>
+<li>Press <strong>4</strong>. Choose the asset closest to yours.</li>
+<li>In the yellow box: will servicing every 180 days save money? Write yes or no.</li>
+<li>Look at the gold curve: yearly cost per machine for each servicing interval. The red line is run-to-failure; the teal line is condition-based. The gold dot marks the best interval.</li>
+<li>Read the tiles. Is <strong>PM at your T</strong> cheaper or dearer than run-to-failure?</li>
+<li>Now slide <strong>β</strong> down to 1.0 and press <strong>Simulate fleet</strong>. Watch the best-interval tile change to "never do PM".</li>
+<li>Move <strong>Condition monitoring detection rate</strong> between 50% and 90%. Find the rate at which sensors beat the best servicing plan.</li>
+<li>Look at the fleet timeline: each row is one machine over three years. Red dots are breakdowns; blue diamonds are planned interventions. Switch the policy menu and compare.</li>
+</ol>
+<p><strong>What to notice.</strong> Servicing on a calendar is only smart when machines wear out. For random failures it is pure cost. Sensors and AI only pay if they detect problems early often enough, which is why the failure log comes before the AI model.</p>
+<p><strong>Apply it to your work.</strong> Do you actually know how your key assets fail? If your maintenance records cannot answer that question, fixing the records is your first analytics project.</p>
+<h2 id="lab-5-the-import-lifeline">Lab 5: The Import Lifeline</h2>
+<p><strong>The story.</strong> Your factory uses an imported input every day: security paper at the Mint, processing reagents at a gold mine, packaging film at a food plant, or critical spares at a cement works. Shipments normally take about five to six weeks by sea. But some shipments get stuck: port congestion at Apapa, Form M paperwork, or a wait for foreign exchange. Those shipments can arrive two to six weeks late.</p>
+<p><strong>The idea you will learn: the reorder point and the resilience premium.</strong> Most companies run stock with two simple rules. The <strong>reorder point (s)</strong> says: when stock on hand plus stock on order falls to this level, place a new order. The <strong>order quantity (Q)</strong> says how much to order each time. In the lab, both are measured in <em>days of cover</em>, meaning how many days of normal usage that amount of stock would last.</p>
+<p>If shipments always arrived on time, you would set s at about the usage during the normal lead time plus a small safety margin. But a few very late shipments change everything, because the rare bad case decides whether you run out. The extra days of stock you must carry <em>only because of disruption risk</em> is your <strong>resilience premium</strong>. It is real money tied up in your warehouse.</p>
+<p><strong>Step by step (5 minutes)</strong></p>
+<ol>
+<li>Press <strong>5</strong>. Choose your input.</li>
+<li>In the yellow box: if a quarter of shipments are delayed, how many extra days of cover do you need to keep a 98% fill rate (meeting 98% of demand straight from stock)?</li>
+<li>Press <strong>Stress test</strong>. The top chart shows one simulated year: the sawtooth is stock rising when a shipment lands and falling with daily use. Red stripes are days with no stock. Red dots mark late shipments.</li>
+<li>Read the <strong>Fill rate</strong> tile, and compare it with the "calm world" figure under it.</li>
+<li>Look at the bottom chart. The teal curve shows fill rate if nothing were ever late; the red curve shows your real, disrupted world. The horizontal gap between them is the resilience premium.</li>
+<li>Press <strong>Find s for 98%</strong>. The insight box tells you the premium in days, in units and in naira of working capital.</li>
+<li>Raise <strong>Disruption probability</strong> to 40% and press the button again.</li>
+</ol>
+<p><strong>What to notice.</strong> Safety stock rules built on "average lead time plus a little" quietly fail when one shipment in four or five is weeks late. Once you know the naira value of the premium, you can compare it fairly with the alternatives: a second supplier, a local supplier, or a bonded buffer warehouse.</p>
+<p><strong>Apply it to your work.</strong> For your most critical imported item, who in your organisation knows the resilience premium, and who owns the decision about it?</p>
+<h2 id="your-toolkit-canvas-five-questions-self-check-and-glossary">Your toolkit: canvas, five questions, self-check and glossary</h2>
+<h3 id="the-simulation-canvas-team-exercise-12-minutes">The Simulation Canvas (team exercise, 12 minutes)</h3>
+<p>Pick one real decision from your organisation and fill in the six boxes. Keep each answer to one line.</p>
+<table>
+<thead>
+<tr>
+<th>Box</th>
+<th>The question to answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Decision</td>
+<td>What will we decide differently because of this model?</td>
+</tr>
+<tr>
+<td>2. KPI</td>
+<td>Which single number defines success?</td>
+</tr>
+<tr>
+<td>3. Uncertainties</td>
+<td>What varies, and roughly how much?</td>
+</tr>
+<tr>
+<td>4. Levers</td>
+<td>What can we actually change?</td>
+</tr>
+<tr>
+<td>5. Logic</td>
+<td>Is it parallel tasks (Lab 1), a queue (Lab 2), a chain with delays (Lab 3), failures (Lab 4) or stock (Lab 5)?</td>
+</tr>
+<tr>
+<td>6. Data</td>
+<td>Which system already records what we need?</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example (pension benefits desk).</em> Decision: how many benefit officers to roster in Q1. KPI: share of applications paid within 10 working days. Uncertainties: the size of the monthly retirement wave and how complex each file is. Levers: number of officers, digital pre-checks of documents, triage of complex files. Logic: a queue, like Lab 2. Data: time stamps in the workflow system.</p>
+<h3 id="five-questions-to-ask-your-analysts-on-monday">Five questions to ask your analysts on Monday</h3>
+<ol>
+<li>What is the range behind this number, not just the average? (Lab 1)</li>
+<li>How busy is this resource, and what happens to waiting if demand rises 5%? (Lab 2)</li>
+<li>What is already on order or in transit that we are not counting? (Lab 3)</li>
+<li>How does this asset fail: early, at random, or by wearing out? (Lab 4)</li>
+<li>What is our resilience premium, and who owns it? (Lab 5)</li>
+</ol>
+<h3 id="self-check-can-you-answer-these-in-a-sentence-each">Self-check: can you answer these in a sentence each?</h3>
+<ol>
+<li>Three jobs run side by side and average 10, 12 and 15 minutes. Why does the next step usually start later than 15 minutes?</li>
+<li>A desk is 95% busy. Why might adding one officer cut waiting time by far more than 5%?</li>
+<li>Name two things that make the bullwhip worse and one cure that costs almost nothing.</li>
+<li>Why can routine servicing be a waste of money for a machine that fails at random?</li>
+<li>What is a resilience premium, and what would you compare it with?</li>
+</ol>
+<p><em>Answers:</em> 1) You wait for whichever is slowest that day, and on many days that is more than 15. 2) Waiting explodes near full utilisation, so a small drop in busyness brings a large drop in waiting. 3) Long delays and ignoring the pipeline; the cure is counting stock on order, or sharing real sales data. 4) Its age does not affect its risk, so replacing it early buys no reliability. 5) The extra stock carried only because of disruption risk; compare its cost with a second supplier or a buffer warehouse.</p>
+<h3 id="glossary">Glossary</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average (mean)</td>
+<td>The typical value; hides the spread</td>
+</tr>
+<tr>
+<td>Bullwhip effect</td>
+<td>Small demand changes growing into big order swings up a supply chain</td>
+</tr>
+<tr>
+<td>Characteristic life (η)</td>
+<td>Roughly how long a typical machine lasts</td>
+</tr>
+<tr>
+<td>Criticality index</td>
+<td>How often a task or path was the one that caused the delay</td>
+</tr>
+<tr>
+<td>CV (coefficient of variation)</td>
+<td>Typical wobble as a share of the average; 0 = perfectly predictable</td>
+</tr>
+<tr>
+<td>Days of cover</td>
+<td>How many days of normal use a stock level would last</td>
+</tr>
+<tr>
+<td>Distribution</td>
+<td>The full range of possible outcomes and how often each happens</td>
+</tr>
+<tr>
+<td>Fill rate</td>
+<td>Share of demand met straight from stock</td>
+</tr>
+<tr>
+<td>Kingman's law</td>
+<td>Wait ≈ variability × utilisation effect × service time</td>
+</tr>
+<tr>
+<td>Lead time</td>
+<td>Time between placing an order and receiving it</td>
+</tr>
+<tr>
+<td>Monte Carlo simulation</td>
+<td>Playing out the future many times with realistic randomness, then counting results</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>Orders already placed but not yet received</td>
+</tr>
+<tr>
+<td>Reorder point (s)</td>
+<td>The stock level that triggers a new order</td>
+</tr>
+<tr>
+<td>Resilience premium</td>
+<td>Extra stock held only because of disruption risk</td>
+</tr>
+<tr>
+<td>Utilisation</td>
+<td>How busy a resource is, as a share of its capacity</td>
+</tr>
+<tr>
+<td>Weibull shape (β)</td>
+<td>One number describing how things fail: early, at random, or by wearing out</td>
+</tr>
+</tbody>
+</table></main></div></body></html>
