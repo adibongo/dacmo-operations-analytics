@@ -86,21 +86,21 @@ ol li,ul li{margin:4px 0}
 <h2 id="six-ideas-in-plain-words">Six ideas in plain words</h2>
 <p>Everything today rests on six simple ideas. Read them slowly once; the labs will make them stick.</p>
 <p><strong>1. An average hides the spread.</strong> If a task "takes 15 minutes on average", some days it takes 11 and some days 22. The average is one number; reality is a range. Planning on the average alone is like planning a Lagos commute on the average traffic: you will be late a lot.</p>
-<p><strong>2. Variability is how wide that spread is.</strong> We measure it with a number called the <strong>CV</strong> (coefficient of variation). Think of it as "typical wobble as a share of the average". A CV of 0.3 means a 15-minute task often lands anywhere from about 10 to 20 minutes. A CV of 0 means it is perfectly predictable, like a machine on a fixed cycle.</p>
+<p><strong>2. Variability is how much results jump around their average.</strong> Analysts measure it with the <strong>coefficient of variation (CV)</strong>, which is the <strong>standard deviation</strong> divided by the average. The standard deviation is the typical distance between a single result and the average. If a 15-minute job has a standard deviation of 4.5 minutes, its CV is 4.5 ÷ 15 = 0.3. Working backwards, a CV of 0.3 on a 15-minute job means a standard deviation of 0.3 × 15 = 4.5 minutes. As a rule of thumb, about two results in three fall within one standard deviation of the average: here from 15 − 4.5 = 10.5 to 15 + 4.5 = 19.5 minutes, or roughly 10 to 20. A CV of 0 means no variation at all, like a machine on a fixed cycle; a CV of 1 means the typical wobble is as large as the average itself.</p>
 <p><strong>3. A distribution is the full picture of what could happen.</strong> Instead of saying "turnaround takes 42 minutes", a distribution says "usually 38 to 50, occasionally 60". In the lab you will see it as a histogram: a bar chart where each bar counts how often a result happened.</p>
 <p><strong>4. A simulation is a rehearsal of the future, many times over.</strong> The computer plays out your operation 1,000 times, each time drawing realistic random task times, arrivals or failures. Then it counts what happened. You are not predicting one future; you are seeing the whole range of futures and how often each one occurs. Analysts call this <strong>Monte Carlo</strong> simulation, after the casino.</p>
-<p><strong>5. Utilisation is how busy a resource is.</strong> If a weighbridge could handle 24 trucks an hour and 18 arrive, it is 75% utilised. Managers love high utilisation because idle resources look wasteful. You are about to discover why, beyond about 85%, high utilisation becomes very expensive.</p>
+<p><strong>5. Utilisation is how busy a resource is.</strong> If a weighbridge could handle 24 trucks an hour and 18 arrive, it is 18 ÷ 24 = 0.75, or 75%, utilised. Managers love high utilisation because idle resources look wasteful. You are about to discover why, beyond about 85%, high utilisation becomes very expensive.</p>
 <p><strong>6. Feedback and delay: decisions change the future, slowly.</strong> When you order stock, it arrives weeks later. Meanwhile you look at your shelves, see they are still empty, and order again. Your own past decisions come back to you after a delay. That loop, not bad luck, causes many of the swings you see in operations.</p>
 <p>If you remember only one sentence from today, make it this: <strong>your plan runs on averages, but your operation lives in the variance.</strong></p>
 <h2 id="lab-1-the-45-minute-turnaround">Lab 1: The 45-Minute Turnaround</h2>
 <p><strong>The story.</strong> It is 06:40 at Murtala Muhammed Airport. A narrow-body aircraft has just parked. Before it can push back, seven ground jobs must happen. Passengers get off, then cleaning, catering and refuelling happen side by side, then new passengers board. At the same time, the baggage team unloads and reloads the hold. The airline has given the ground handler a 45-minute slot.</p>
-<p><strong>The idea you will learn: the Flaw of Averages.</strong> Add up the averages and the plan says 42 minutes, so 45 looks safe. But look closely: boarding cannot start until the <em>slowest</em> of cleaning, catering and refuelling is done. On a day when refuelling is quick but catering is slow, you wait for catering. When several jobs run side by side, you always wait for whichever happens to be slowest that day. So the real average is longer than the plan, even when nothing goes wrong. That is not bad luck; it is arithmetic.</p>
+<p><strong>The idea you will learn: the Flaw of Averages.</strong> The plan adds up the average times along the longest path: deboarding 8 minutes, then the longest of the three side-by-side jobs (refuelling, 15), then boarding 15, then push-back 4. That gives 8 + 15 + 15 + 4 = 42 minutes, so 45 looks safe. But look closely: boarding cannot start until the <em>slowest</em> of cleaning, catering and refuelling is done. On a day when refuelling is quick but catering is slow, you wait for catering. When several jobs run side by side, you always wait for whichever happens to be slowest that day. So the real average is longer than the plan, even when nothing goes wrong. Simulating 100,000 mornings, with each team's time varying with a CV of 0.3, the average wait for the slowest of the three teams comes out at about 16.3 minutes rather than 15. That is not bad luck; it is arithmetic.</p>
 <p><strong>Step by step (6 minutes)</strong></p>
 <ol>
 <li>Press <strong>1</strong> to open the lab. Read the top tile: "Plan (averages) 42.0 min".</li>
 <li>In the yellow box, type your guess: what percentage of flights leave within 45 minutes?</li>
 <li>Press <strong>Run 1,000 turnarounds</strong>.</li>
-<li>Look at the <strong>On-time departures</strong> tile and compare it with your guess. Most people guess 85 to 95%. The simulation usually says around 60%.</li>
+<li>Look at the <strong>On-time departures</strong> tile and compare it with your guess. Most people guess 85 to 95%. The simulation usually finds that about 610 of the 1,000 turnarounds leave within 45 minutes: about 61%.</li>
 <li>Look at the histogram. Green bars are flights that made the slot; red bars are late. The gold dashed line is the plan; the white line is the slot. Notice how much of the shape sits to the right of the plan.</li>
 <li>Look at the <strong>Criticality index</strong> chart. It shows how often each path was the one that held up departure. Refuelling looks like the obvious bottleneck on paper, yet other paths cause delay a large share of the time.</li>
 <li>Use <strong>Invest to cut one task by 20%</strong>. Try refuelling, then boarding, then baggage. Watch which choice moves on-time performance the most.</li>
@@ -110,8 +110,9 @@ ol li,ul li{margin:4px 0}
 <p><strong>Apply it to your work.</strong> Where in your operation must several things finish before the next step starts? Think of a month-end close waiting for every branch, a well start-up waiting for permits and equipment, or a benefits payment waiting for three verifications. Your plan for that step is probably too optimistic, by more than you think.</p>
 <h2 id="lab-2-the-gate">Lab 2: The Gate</h2>
 <p><strong>The story.</strong> Trucks arrive at a Dangote cement depot to load. There are two weighbridges, and each handles one truck at a time. Trucks do not arrive evenly: sometimes three come together, then none for ten minutes. Some trucks clear in three minutes, some take nine. The same pattern appears at a Golden Sugar cane intake, the Lagos Free Zone gate, a pension benefits desk, a claims desk or a pilgrim check-in counter. Pick the one closest to your work from the <strong>Context</strong> menu.</p>
-<p><strong>The idea you will learn: Kingman's law.</strong> How long people wait in a queue depends on three things multiplied together: <strong>Wait ≈ Variability × Utilisation effect × Service time</strong>. The variability part is (ca² + cs²) ÷ 2, where ca is how unpredictable arrivals are and cs how unpredictable service is. The utilisation effect is u ÷ (1 − u).</p>
-<p>You do not need to calculate it. Just notice the utilisation effect, u ÷ (1 − u). At 50% busy it equals 1. At 80% it equals 4. At 90% it equals 9. At 95% it equals 19. So waiting does not grow steadily as you get busier; it shoots up like a hockey stick. The variability part says that the more unpredictable the arrivals and service times, the longer the wait.</p>
+<p><strong>The idea you will learn: Kingman's law.</strong> How long people wait in a queue depends on three things multiplied together: <strong>Wait ≈ variability part × busyness part × service time</strong>. The variability part is (ca² + cs²) ÷ 2, where ca is the coefficient of variation (CV) of the gaps between arrivals and cs is the CV of the service time. When customers turn up at random, ca is about 1. The busyness part is u ÷ (1 − u), where u is utilisation written as a fraction (80% busy is u = 0.8).</p>
+<p>Work the busyness part through: at 50% busy, 0.5 ÷ 0.5 = 1. At 80%, 0.8 ÷ 0.2 = 4. At 90%, 0.9 ÷ 0.1 = 9. At 95%, 0.95 ÷ 0.05 = 19.</p>
+<p><em>A worked example.</em> One officer, 5 minutes per customer, 10 customers an hour, random arrivals (ca = 1) and service CV cs = 0.8. Utilisation u = 10 × 5 ÷ 60 = 0.83. Busyness part = 0.83 ÷ 0.17 ≈ 5. Variability part = (1² + 0.8²) ÷ 2 = (1 + 0.64) ÷ 2 = 0.82. Average wait ≈ 0.82 × 5 × 5 minutes ≈ 20 minutes. Add one customer an hour: u = 55 ÷ 60 = 0.92, busyness part ≈ 11, wait ≈ 0.82 × 11 × 5 ≈ 45 minutes. So waiting does not grow steadily as you get busier; it shoots up like a hockey stick. The variability part says that the more unpredictable the arrivals and service times, the longer the wait.</p>
 <p><strong>Step by step (7 minutes)</strong></p>
 <ol>
 <li>Press <strong>2</strong>. Choose your context. The live floor starts running: coloured hexagons are trucks or customers waiting, green when they have just arrived and red after an hour.</li>
@@ -131,8 +132,8 @@ ol li,ul li{margin:4px 0}
 <ol>
 <li>Press <strong>3</strong>. Pick your context. Leave the pattern on "Festive pulse".</li>
 <li>In the yellow box: shoppers' demand peaks 40% above normal. What peak do you think the factory will see?</li>
-<li>Click <strong>Typical manager</strong>. Look at the top chart. The white line is shoppers. The red line is the factory. Read the <strong>Factory peak order</strong> tile; it is often around +480%.</li>
-<li>Read the <strong>Bullwhip ratio</strong> tile. It compares how much factory orders swing with how much shopper demand swings. The bigger it is, the worse the whip.</li>
+<li>Click <strong>Typical manager</strong>. Look at the top chart. The white line is shoppers. The red line is the factory. Read the <strong>Factory peak order</strong> tile. Normal demand is 100 packs a week; the factory's peak week is often about 583 packs, which is 483 above normal, or about +480%.</li>
+<li>Read the <strong>Bullwhip ratio</strong> tile: the variance of factory orders divided by the variance of shopper demand, where variance is the standard deviation squared. The bigger it is, the worse the whip.</li>
 <li>Change one thing at a time and watch the ratio: slide <strong>Attention to pipeline</strong> up to 1.0, then tick <strong>Share shopper (POS) data upstream</strong>, then shorten the <strong>lead time</strong> to 1 week.</li>
 <li>Click <strong>Disciplined planner</strong>. Watch the whip almost disappear.</li>
 <li>Look at the bottom chart. Negative inventory means empty shelves and unfilled orders.</li>
@@ -168,13 +169,13 @@ ol li,ul li{margin:4px 0}
 </tr>
 </tbody>
 </table>
-<p>The second number, <strong>characteristic life η</strong> (say "eta"), is roughly how long a typical machine lasts.</p>
+<p>The second number, <strong>characteristic life η</strong> (say "eta"), is the age by which about 63% of machines have failed.</p>
 <p><strong>Step by step (6 minutes)</strong></p>
 <ol>
 <li>Press <strong>4</strong>. Choose the asset closest to yours.</li>
 <li>In the yellow box: will servicing every 180 days save money? Write yes or no.</li>
 <li>Look at the gold curve: yearly cost per machine for each servicing interval. The red line is run-to-failure; the teal line is condition-based. The gold dot marks the best interval.</li>
-<li>Read the tiles. Is <strong>PM at your T</strong> cheaper or dearer than run-to-failure?</li>
+<li>Read the tiles. Is <strong>PM at your T</strong> (preventive maintenance every T days) cheaper or dearer than run-to-failure? The teal line is condition-based maintenance (CBM), which uses sensors to warn of trouble.</li>
 <li>Now slide <strong>β</strong> down to 1.0 and press <strong>Simulate fleet</strong>. Watch the best-interval tile change to "never do PM".</li>
 <li>Move <strong>Condition monitoring detection rate</strong> between 50% and 90%. Find the rate at which sensors beat the best servicing plan.</li>
 <li>Look at the fleet timeline: each row is one machine over three years. Red dots are breakdowns; blue diamonds are planned interventions. Switch the policy menu and compare.</li>
@@ -182,8 +183,8 @@ ol li,ul li{margin:4px 0}
 <p><strong>What to notice.</strong> Servicing on a calendar is only smart when machines wear out. For random failures it is pure cost. Sensors and AI only pay if they detect problems early often enough, which is why the failure log comes before the AI model.</p>
 <p><strong>Apply it to your work.</strong> Do you actually know how your key assets fail? If your maintenance records cannot answer that question, fixing the records is your first analytics project.</p>
 <h2 id="lab-5-the-import-lifeline">Lab 5: The Import Lifeline</h2>
-<p><strong>The story.</strong> Your factory uses an imported input every day: security paper at the Mint, processing reagents at a gold mine, packaging film at a food plant, or critical spares at a cement works. Shipments normally take about five to six weeks by sea. But some shipments get stuck: port congestion at Apapa, Form M paperwork, or a wait for foreign exchange. Those shipments can arrive two to six weeks late.</p>
-<p><strong>The idea you will learn: the reorder point and the resilience premium.</strong> Most companies run stock with two simple rules. The <strong>reorder point (s)</strong> says: when stock on hand plus stock on order falls to this level, place a new order. The <strong>order quantity (Q)</strong> says how much to order each time. In the lab, both are measured in <em>days of cover</em>, meaning how many days of normal usage that amount of stock would last.</p>
+<p><strong>The story.</strong> Your factory uses an imported input every day: security paper at the Mint, processing reagents at a gold mine, packaging film at a food plant, or critical spares at a cement works. Shipments normally take about five to six weeks by sea. But some shipments get stuck: port congestion at Apapa, Form M paperwork (the Central Bank of Nigeria import declaration), or a wait for foreign exchange (FX). Those shipments can arrive two to six weeks late.</p>
+<p><strong>The idea you will learn: the reorder point and the resilience premium.</strong> Most companies run stock with two simple rules. The <strong>reorder point (s)</strong> says: when stock on hand plus stock on order falls to this level, place a new order. The <strong>order quantity (Q)</strong> says how much to order each time. In the lab, both are measured in <em>days of cover</em>: stock divided by average daily use. For example, 1,600 reels ÷ 40 reels a day = 40 days of cover.</p>
 <p>If shipments always arrived on time, you would set s at about the usage during the normal lead time plus a small safety margin. But a few very late shipments change everything, because the rare bad case decides whether you run out. The extra days of stock you must carry <em>only because of disruption risk</em> is your <strong>resilience premium</strong>. It is real money tied up in your warehouse.</p>
 <p><strong>Step by step (5 minutes)</strong></p>
 <ol>
@@ -192,7 +193,7 @@ ol li,ul li{margin:4px 0}
 <li>Press <strong>Stress test</strong>. The top chart shows one simulated year: the sawtooth is stock rising when a shipment lands and falling with daily use. Red stripes are days with no stock. Red dots mark late shipments.</li>
 <li>Read the <strong>Fill rate</strong> tile, and compare it with the "calm world" figure under it.</li>
 <li>Look at the bottom chart. The teal curve shows fill rate if nothing were ever late; the red curve shows your real, disrupted world. The horizontal gap between them is the resilience premium.</li>
-<li>Press <strong>Find s for 98%</strong>. The insight box tells you the premium in days, in units and in naira of working capital.</li>
+<li>Press <strong>Find s for 98%</strong>. The lab tries reorder points one day at a time until 98% is reached. With the security-paper settings, 98% needs about 51 days in a calm world and about 71 days with delays, so the premium is 71 − 51 = 20 days. At 40 reels a day that is 20 × 40 = 800 reels; at an assumed ₦2.5m a reel, 800 × ₦2.5m = ₦2bn of working capital.</li>
 <li>Raise <strong>Disruption probability</strong> to 40% and press the button again.</li>
 </ol>
 <p><strong>What to notice.</strong> Safety stock rules built on "average lead time plus a little" quietly fail when one shipment in four or five is weeks late. Once you know the naira value of the premium, you can compare it fairly with the alternatives: a second supplier, a local supplier, or a bonded buffer warehouse.</p>
@@ -213,7 +214,7 @@ ol li,ul li{margin:4px 0}
 <td>What will we decide differently because of this model?</td>
 </tr>
 <tr>
-<td>2. KPI</td>
+<td>2. KPI (key performance indicator)</td>
 <td>Which single number defines success?</td>
 </tr>
 <tr>
@@ -271,15 +272,19 @@ ol li,ul li{margin:4px 0}
 </tr>
 <tr>
 <td>Characteristic life (η)</td>
-<td>Roughly how long a typical machine lasts</td>
+<td>Age by which about 63% of machines have failed</td>
 </tr>
 <tr>
 <td>Criticality index</td>
 <td>How often a task or path was the one that caused the delay</td>
 </tr>
 <tr>
-<td>CV (coefficient of variation)</td>
-<td>Typical wobble as a share of the average; 0 = perfectly predictable</td>
+<td>Coefficient of variation (CV)</td>
+<td>Standard deviation ÷ average; 0 = perfectly predictable</td>
+</tr>
+<tr>
+<td>Standard deviation</td>
+<td>The typical distance between a single result and the average</td>
 </tr>
 <tr>
 <td>Days of cover</td>
