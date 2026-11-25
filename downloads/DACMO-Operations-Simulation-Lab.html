@@ -313,8 +313,7 @@ document.querySelectorAll('[id$=ins]').forEach(b=>{const id=b.id.replace('ins','
 
 // ---------- home honeycomb ----------
 let hT=0;const hexLabels=['Queue','Bullwhip','Weibull','Monte Carlo','Kingman','Safety stock','Critical path','Forecast','Buffer','Risk','Flow','AI'];
-function honey(){if(current!=='home'){requestAnimationFrame(honey);
-{const h=(location.hash||'').replace('#','');if(['l1','l2','l3','l4','l5'].includes(h))setTimeout(()=>show(h),50);}return}const c=$('honey');const {x,w,h}=fit(c);x.clearRect(0,0,w,h);hT+=0.012;const r=38;let k=0;
+function honey(){if(current!=='home'){requestAnimationFrame(honey);return}const c=$('honey');const {x,w,h}=fit(c);x.clearRect(0,0,w,h);hT+=0.012;const r=38;let k=0;
  for(let row=0;row<5;row++)for(let col=0;col<5;col++){const cx=w/2-2*r*1.73+col*r*1.75+(row%2)*r*.87,cy=30+row*r*1.5;const ph=Math.sin(hT+col*.7+row*.9);const a=.25+.35*(ph+1)/2;
   hexPath(x,cx,cy+ph*3,r-3);x.fillStyle=(row+col)%4===0?`rgba(181,178,53,${a})`:`rgba(15,124,156,${a})`;x.fill();x.strokeStyle='rgba(181,178,53,.35)';x.stroke();
   if((row+col)%2===0){x.fillStyle='rgba(244,247,251,.85)';x.font='12px Calibri';x.textAlign='center';x.fillText(hexLabels[k++%hexLabels.length],cx,cy+4+ph*3)}}
@@ -456,6 +455,9 @@ function opt5(){const qD=+$('l5q').value,pd=+$('l5p').value;let calmS=null,riskS
  $('l5insight').classList.add('on');$('l5insight').innerHTML=`<b>Result:</b> 98% fill needs <b>s = ${riskS} days</b> of cover with disruptions vs <b>${calmS} days</b> in a calm world. The <b>resilience premium is ${riskS-calmS} days</b> ≈ ${fmt((riskS-calmS)*mu)} ${ctx.u} ≈ <b>${naira((riskS-calmS)*mu*ctx.val)}</b> of working capital, plus ~${naira((riskS-calmS)*mu*ctx.val*.25)}/yr to carry it.${$('l5guess').value?` You predicted ${$('l5guess').value} extra days.`:''}<br><br>Disruptions fatten the tail, and the tail sets your buffer. Put this number beside the cost of dual sourcing or a bonded LFZ warehouse.`}
 renders.l5=runL5;{const c=CTX5[0];$('l5m').value=c.m;$('l5cv').value=c.cv;$('l5L').value=c.L;$('l5p').value=c.p;['l5m','l5cv','l5L','l5p'].forEach(i=>$(i).dispatchEvent(new Event('input')));}$('l5run').onclick=runL5;$('l5opt').onclick=opt5;['l5m','l5cv','l5L','l5p','l5s','l5q'].forEach(i=>$(i).addEventListener('change',runL5));
 $('l5ctx').onchange=()=>{const c=CTX5[+$('l5ctx').value];$('l5m').value=c.m;$('l5cv').value=c.cv;$('l5L').value=c.L;$('l5p').value=c.p;['l5m','l5cv','l5L','l5p'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL5()};
+// deep links: lab/#l1 … #l5
+function fromHash(){const h=(location.hash||'').replace('#','');if(['home','l1','l2','l3','l4','l5'].includes(h))show(h);}
+window.addEventListener('hashchange',fromHash);setTimeout(fromHash,60);
 </script>
 </body>
 </html>
