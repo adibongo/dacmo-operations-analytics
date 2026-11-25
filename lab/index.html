@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Operations Simulation Lab · DACMO 2026 · Prof Bongo Adi · LBS</title>
 <style>
-:root{--bg:#06201A;--bg2:#0D2E27;--panel:#0f3a31;--line:rgba(200,148,31,.25);--gold:#C8941F;--teal:#0E8A78;--teal2:#2dd4bf;--red:#e05a4c;--blue:#4a86d0;--purple:#a78bfa;--ink:#F4F7FB;--mute:#9fbab3}
+:root{--bg:#122867;--bg2:#1A3275;--panel:#1A3275;--line:rgba(181,178,53,.25);--gold:#B5B235;--teal:#0F7C9C;--teal2:#6EDEEF;--red:#e05a4c;--blue:#6E9BE0;--purple:#a78bfa;--ink:#F4F7FB;--mute:#A3B1CF}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Calibri,"Segoe UI",system-ui,-apple-system,sans-serif}
 body{border-top:6px solid var(--gold);min-height:100vh}
-header{display:flex;align-items:center;gap:16px;padding:12px 22px;background:#041713;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header{display:flex;align-items:center;gap:16px;padding:12px 22px;background:#0A173D;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 header .brand{display:flex;align-items:center;gap:10px}
 header .brand b{font-size:18px;letter-spacing:.5px}
 header .brand small{display:block;color:var(--mute);font-size:12px;letter-spacing:2px;text-transform:uppercase}
 nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
 nav button{background:transparent;color:var(--mute);border:1px solid transparent;padding:7px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px;display:flex;align-items:center;gap:6px}
 nav button:hover{color:var(--ink);border-color:var(--line)}
-nav button.on{background:var(--gold);color:#06201A;font-weight:700}
+nav button.on{background:var(--gold);color:#122867;font-weight:700}
 .hx{display:inline-grid;place-items:center;width:22px;height:25px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:currentColor;font-size:11px;font-weight:800}
 nav button .hx{background:var(--teal);color:#fff}
-nav button.on .hx{background:#06201A;color:var(--gold)}
+nav button.on .hx{background:#122867;color:var(--gold)}
 main{padding:22px;max-width:1500px;margin:0 auto}
 section{display:none}section.on{display:block;animation:fade .35s}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
@@ -31,12 +31,12 @@ h1{font-size:34px;margin:4px 0 6px}h2{font-size:26px;margin:4px 0 4px}
 .ctl label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--mute);margin:12px 0 3px}
 .ctl label b{color:var(--ink);font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--gold)}
-select,input[type=number]{width:100%;background:#06201A;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}
-.btn{background:var(--gold);color:#06201A;border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+select,input[type=number]{width:100%;background:#122867;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}
+.btn{background:var(--gold);color:#122867;border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
 .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.kpi{background:#06201A;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px 12px}
+.kpi{background:#122867;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px 12px}
 .kpi span{display:block;color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:1px}
 .kpi b{font-size:26px;font-variant-numeric:tabular-nums}
 .kpi small{color:var(--mute);font-size:12px}
@@ -44,9 +44,9 @@ select,input[type=number]{width:100%;background:#06201A;color:var(--ink);border:
 canvas{width:100%;display:block}
 .cv{height:270px}.cvs{height:200px}.cvt{height:330px}
 .ctitle{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 6px}
-.predict{background:rgba(200,148,31,.08);border:1px dashed var(--gold);border-radius:12px;padding:10px 12px;margin-top:12px;font-size:14px}
+.predict{background:rgba(181,178,53,.08);border:1px dashed var(--gold);border-radius:12px;padding:10px 12px;margin-top:12px;font-size:14px}
 .predict input{margin-top:6px}
-.insight{display:none;background:rgba(14,138,120,.15);border:1px solid var(--teal);border-radius:12px;padding:12px 14px;margin-top:12px;line-height:1.45;font-size:15px}
+.insight{display:none;background:rgba(15,124,156,.15);border:1px solid var(--teal);border-radius:12px;padding:12px 14px;margin-top:12px;line-height:1.45;font-size:15px}
 .insight.on{display:block;animation:fade .4s}
 .ctx{font-size:13px;color:var(--mute);margin-top:4px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -64,7 +64,7 @@ canvas{width:100%;display:block}
 .lab h3{margin:2px 0 4px;font-size:19px}.lab p{margin:0;color:var(--mute);font-size:14px;line-height:1.35}
 .lab .who{margin-top:8px;font-size:12px;color:var(--gold)}
 .rule{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-.rule div{flex:1;min-width:160px;background:#041713;border:1px solid var(--line);border-radius:12px;padding:12px}
+.rule div{flex:1;min-width:160px;background:#0A173D;border:1px solid var(--line);border-radius:12px;padding:12px}
 .rule b{color:var(--gold);font-size:20px}
 footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-top:1px solid var(--line);margin-top:24px}
 @media(max-width:1100px){.grid{grid-template-columns:1fr}.labs{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
@@ -73,7 +73,7 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
 <body>
 <header>
  <div class="brand">
-  <svg width="40" height="46" viewBox="0 0 100 115" aria-label="bongo.ai"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E8A78"/><stop offset="1" stop-color="#C8941F"/></linearGradient></defs><polygon points="50,2 97,29 97,86 50,113 3,86 3,29" fill="url(#lg)"/><polygon points="50,18 83,37 83,78 50,97 17,78 17,37" fill="#06201A"/><text x="50" y="72" text-anchor="middle" font-family="Calibri,Arial" font-weight="700" font-size="44" fill="#F4F7FB">b</text><circle cx="68" cy="70" r="5" fill="#C8941F"/></svg>
+  <svg width="40" height="46" viewBox="0 0 100 115" aria-label="bongo.ai"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2457B8"/><stop offset="1" stop-color="#B5B235"/></linearGradient></defs><polygon points="50,2 97,29 97,86 50,113 3,86 3,29" fill="url(#lg)"/><polygon points="50,18 83,37 83,78 50,97 17,78 17,37" fill="#122867"/><text x="50" y="72" text-anchor="middle" font-family="Calibri,Arial" font-weight="700" font-size="44" fill="#F4F7FB">b</text><circle cx="68" cy="70" r="5" fill="#B5B235"/></svg>
   <div><b>Operations Simulation Lab</b><small>bongo.ai · Lagos Business School · DACMO 2026</small></div>
  </div>
  <nav id="nav">
@@ -99,11 +99,11 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
   <canvas id="honey" class="honey"></canvas>
  </div>
  <div class="labs">
-  <div class="lab" data-go="l1"><div class="hb" style="background:#0B6B5E">1</div><h3>The 45-Minute Turnaround</h3><p>Monte Carlo on an aircraft turn. Why "on plan" flights leave late, and which task really sits on the critical path.</p><div class="who">SAHCO · Aero Contractors · Pilgrims Africa</div></div>
-  <div class="lab" data-go="l2"><div class="hb" style="background:#1D4E89">2</div><h3>The Gate</h3><p>Live queue at a weighbridge, port gate or benefits desk. Watch the hockey stick appear as utilisation rises.</p><div class="who">Dangote · Golden Sugar · LFZ · Fidelity · Sterling · Coronation</div></div>
-  <div class="lab" data-go="l3"><div class="hb" style="background:#C8941F">3</div><h3>December Demand Shock</h3><p>A four-tier FMCG chain meets a festive spike. Watch the bullwhip crack, then tame it.</p><div class="who">UAC Foods · Golden Sugar · Dangote · Everyday · Sunbeth</div></div>
-  <div class="lab" data-go="l4"><div class="hb" style="background:#C0392B">4</div><h3>The Asset Fleet</h3><p>Run to failure, preventive or condition-based? A Weibull fleet of pumps and compressors decides.</p><div class="who">Seplat · Chevron · Shell · Sahara · PESO · Librod · Hobark</div></div>
-  <div class="lab" data-go="l5"><div class="hb" style="background:#8B5CF6">5</div><h3>The Import Lifeline</h3><p>Reorder points under port congestion and FX delays. What does resilience actually cost?</p><div class="who">NSPM · Segilola · Dangote · UAC Foods · Erdis</div></div>
+  <div class="lab" data-go="l1"><div class="hb" style="background:#2457B8">1</div><h3>The 45-Minute Turnaround</h3><p>Monte Carlo on an aircraft turn. Why "on plan" flights leave late, and which task really sits on the critical path.</p><div class="who">SAHCO · Aero Contractors · Pilgrims Africa</div></div>
+  <div class="lab" data-go="l2"><div class="hb" style="background:#0F7C9C">2</div><h3>The Gate</h3><p>Live queue at a weighbridge, port gate or benefits desk. Watch the hockey stick appear as utilisation rises.</p><div class="who">Dangote · Golden Sugar · LFZ · Fidelity · Sterling · Coronation</div></div>
+  <div class="lab" data-go="l3"><div class="hb" style="background:#B5B235">3</div><h3>December Demand Shock</h3><p>A four-tier FMCG chain meets a festive spike. Watch the bullwhip crack, then tame it.</p><div class="who">UAC Foods · Golden Sugar · Dangote · Everyday · Sunbeth</div></div>
+  <div class="lab" data-go="l4"><div class="hb" style="background:#B03A2E">4</div><h3>The Asset Fleet</h3><p>Run to failure, preventive or condition-based? A Weibull fleet of pumps and compressors decides.</p><div class="who">Seplat · Chevron · Shell · Sahara · PESO · Librod · Hobark</div></div>
+  <div class="lab" data-go="l5"><div class="hb" style="background:#6B4FA8">5</div><h3>The Import Lifeline</h3><p>Reorder points under port congestion and FX delays. What does resilience actually cost?</p><div class="who">NSPM · Segilola · Dangote · UAC Foods · Erdis</div></div>
  </div>
 </section>
 
@@ -127,7 +127,7 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
   <div>
    <div class="kpis" id="l1k"></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">Distribution of departure times (minutes after on-blocks)</div><canvas id="l1h" class="cv"></canvas>
-   <div class="legend"><span><i style="background:#0E8A78"></i>On time</span><span><i style="background:#e05a4c"></i>Late</span><span><i style="background:#C8941F"></i>Plan by averages</span><span><i style="background:#fff"></i>Slot</span></div></div>
+   <div class="legend"><span><i style="background:#0F7C9C"></i>On time</span><span><i style="background:#e05a4c"></i>Late</span><span><i style="background:#B5B235"></i>Plan by averages</span><span><i style="background:#fff"></i>Slot</span></div></div>
    <div class="two" style="margin-top:12px">
     <div class="card"><div class="ctitle">Criticality index: how often each task drives the departure</div><canvas id="l1c" class="cvs"></canvas></div>
     <div class="card"><div class="ctitle">The turn network</div><canvas id="l1n" class="cvs"></canvas></div>
@@ -199,7 +199,7 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
   <div>
    <div class="kpis" id="l3k"></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">Orders placed by each tier (units/week)</div><canvas id="l3o" class="cv"></canvas>
-   <div class="legend"><span><i style="background:#fff"></i>Shoppers</span><span><i style="background:#2dd4bf"></i>Retailers</span><span><i style="background:#4a86d0"></i>Distributor</span><span><i style="background:#C8941F"></i>Depot</span><span><i style="background:#e05a4c"></i>Factory</span></div></div>
+   <div class="legend"><span><i style="background:#fff"></i>Shoppers</span><span><i style="background:#6EDEEF"></i>Retailers</span><span><i style="background:#6E9BE0"></i>Distributor</span><span><i style="background:#B5B235"></i>Depot</span><span><i style="background:#e05a4c"></i>Factory</span></div></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">Inventory (negative = backlog / empty shelves)</div><canvas id="l3i" class="cvs"></canvas></div>
    <div class="insight" id="l3insight"><b>Structure creates behaviour.</b> Nobody here is irrational. The bullwhip comes from <i>delays</i> plus decision rules that <i>forget the supply line</i>: "I ordered last week but it hasn't arrived, so I'll order again." Long lead times amplify it. The cures are structural: count the pipeline, share POS data, shorten lead times and correct gently. Click "Disciplined planner" to see it vanish.</div>
   </div>
@@ -231,8 +231,8 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
   <div>
    <div class="kpis" id="l4k"></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">Cost per asset-year vs PM interval (₦m)</div><canvas id="l4c" class="cv"></canvas>
-   <div class="legend"><span><i style="background:#C8941F"></i>Preventive at interval T</span><span><i style="background:#e05a4c"></i>Run to failure</span><span><i style="background:#2dd4bf"></i>Condition-based</span></div></div>
-   <div class="card" style="margin-top:12px"><div class="ctitle">Fleet timeline: 24 assets × 3 years (<span style="color:#e05a4c">● failure</span> · <span style="color:#4a86d0">◆ planned intervention</span>)</div><canvas id="l4t" class="cvt"></canvas></div>
+   <div class="legend"><span><i style="background:#B5B235"></i>Preventive at interval T</span><span><i style="background:#e05a4c"></i>Run to failure</span><span><i style="background:#6EDEEF"></i>Condition-based</span></div></div>
+   <div class="card" style="margin-top:12px"><div class="ctitle">Fleet timeline: 24 assets × 3 years (<span style="color:#e05a4c">● failure</span> · <span style="color:#6E9BE0">◆ planned intervention</span>)</div><canvas id="l4t" class="cvt"></canvas></div>
    <div class="insight" id="l4insight"><b>The shape decides the strategy.</b> β &lt; 1: infant mortality, so PM makes things <i>worse</i> by resetting good assets into the risky early period. β ≈ 1: random failures, where calendar PM is pure waste and only condition monitoring helps. β &gt; 1: wear-out, where an optimal interval exists. Condition-based maintenance wins whenever sensors detect failures early enough. That's why the data layer (CMMS + sensors) must come before the AI model.</div>
   </div>
  </div>
@@ -261,14 +261,14 @@ footer{color:var(--mute);font-size:12px;text-align:center;padding:16px;border-to
    <div class="kpis" id="l5k"></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">One simulated year: stock on hand (red = stock-out days)</div><canvas id="l5p1" class="cv"></canvas></div>
    <div class="card" style="margin-top:12px"><div class="ctitle">Fill rate vs reorder point: calm world vs your world</div><canvas id="l5c" class="cvs"></canvas>
-   <div class="legend"><span><i style="background:#2dd4bf"></i>No disruptions</span><span><i style="background:#e05a4c"></i>With disruptions</span><span><i style="background:#C8941F"></i>Your s</span></div></div>
+   <div class="legend"><span><i style="background:#6EDEEF"></i>No disruptions</span><span><i style="background:#e05a4c"></i>With disruptions</span><span><i style="background:#B5B235"></i>Your s</span></div></div>
    <div class="insight" id="l5insight"><b>Disruptions fatten the tail, and the tail sets your buffer.</b> Safety stock formulas built on "average lead time ± a bit" collapse when 1 shipment in 5 is 4 weeks late. The gap between the two curves is the <i>resilience premium</i>: inventory you carry purely because of port and FX risk. Put a naira value on it. That's the business case for dual sourcing, bonded stock or a Lagos Free Zone buffer warehouse.</div>
   </div>
  </div>
 </section>
 
 </main>
-<footer><a href="../" style="color:#C8941F">← Back to the DACMO hub</a> · Prof Bongo Adi · Lagos Business School · bongo.ai · Developing Analytical Competence for Managing Operations (DACMO) 2026 · All simulations run live in your browser</footer>
+<footer><a href="../" style="color:#B5B235">← Back to the DACMO hub</a> · Prof Bongo Adi · Lagos Business School · bongo.ai · Developing Analytical Competence for Managing Operations (DACMO) 2026 · All simulations run live in your browser</footer>
 
 <script>
 // ---------- utilities ----------
@@ -285,7 +285,7 @@ function chart(c,o){
  const {x,w,h}=fit(c);x.clearRect(0,0,w,h);
  const m={l:52,r:14,t:10,b:30};
  const X=v=>m.l+(v-o.xmin)/(o.xmax-o.xmin)*(w-m.l-m.r), Y=v=>h-m.b-(Math.min(Math.max(v,o.ymin),o.ymax)-o.ymin)/(o.ymax-o.ymin)*(h-m.t-m.b);
- x.font='11px Calibri,system-ui';x.fillStyle='#9fbab3';x.strokeStyle='rgba(255,255,255,.07)';x.lineWidth=1;
+ x.font='11px Calibri,system-ui';x.fillStyle='#A3B1CF';x.strokeStyle='rgba(255,255,255,.07)';x.lineWidth=1;
  nice(o.ymin,o.ymax,4).forEach(t=>{x.beginPath();x.moveTo(m.l,Y(t));x.lineTo(w-m.r,Y(t));x.stroke();x.textAlign='right';x.fillText(o.yf?o.yf(t):fmt(t,Math.abs(t)<10&&t%1?1:0),m.l-6,Y(t)+4)});
  nice(o.xmin,o.xmax,7).forEach(t=>{x.textAlign='center';x.fillText(o.xf?o.xf(t):fmt(t,t%1?1:0),X(t),h-m.b+16)});
  if(o.xl){x.textAlign='right';x.fillText(o.xl,w-m.r,h-2)}
@@ -295,7 +295,7 @@ function chart(c,o){
   if(s.fill){x.lineTo(X(s.pts[s.pts.length-1][0]),Y(o.ymin));x.lineTo(X(s.pts[0][0]),Y(o.ymin));x.closePath();x.fillStyle=s.fill;x.fill()}});
  (o.vl||[]).forEach(v=>{x.strokeStyle=v.c;x.lineWidth=2;x.setLineDash(v.dash||[5,4]);x.beginPath();x.moveTo(X(v.x),m.t);x.lineTo(X(v.x),h-m.b);x.stroke();x.setLineDash([]);if(v.t){x.fillStyle=v.c;x.textAlign='left';x.font='bold 12px Calibri,system-ui';x.fillText(v.t,X(v.x)+4,m.t+12+(v.dy||0));x.font='11px Calibri,system-ui'}});
  (o.hl||[]).forEach(v=>{x.strokeStyle=v.c;x.lineWidth=1.5;x.setLineDash([5,4]);x.beginPath();x.moveTo(m.l,Y(v.y));x.lineTo(w-m.r,Y(v.y));x.stroke();x.setLineDash([]);if(v.t){x.fillStyle=v.c;x.textAlign='left';x.fillText(v.t,m.l+4,Y(v.y)-4)}});
- (o.dots||[]).forEach(d=>{x.fillStyle=d.c;x.beginPath();x.arc(X(d.x),Y(d.y),d.r||6,0,7);x.fill();x.strokeStyle='#06201A';x.lineWidth=2;x.stroke();if(d.t){x.fillStyle=d.c;x.font='bold 12px Calibri';x.textAlign='left';x.fillText(d.t,X(d.x)+9,Y(d.y)-6)}});
+ (o.dots||[]).forEach(d=>{x.fillStyle=d.c;x.beginPath();x.arc(X(d.x),Y(d.y),d.r||6,0,7);x.fill();x.strokeStyle='#122867';x.lineWidth=2;x.stroke();if(d.t){x.fillStyle=d.c;x.font='bold 12px Calibri';x.textAlign='left';x.fillText(d.t,X(d.x)+9,Y(d.y)-6)}});
  return{X,Y}
 }
 function kpis(el,arr){$(el).innerHTML=arr.map(k=>`<div class="kpi"><span>${k[0]}</span><b class="${k[2]||''}">${k[1]}</b>${k[3]?`<small><br>${k[3]}</small>`:''}</div>`).join('')}
@@ -316,9 +316,9 @@ let hT=0;const hexLabels=['Queue','Bullwhip','Weibull','Monte Carlo','Kingman','
 function honey(){if(current!=='home'){requestAnimationFrame(honey);
 {const h=(location.hash||'').replace('#','');if(['l1','l2','l3','l4','l5'].includes(h))setTimeout(()=>show(h),50);}return}const c=$('honey');const {x,w,h}=fit(c);x.clearRect(0,0,w,h);hT+=0.012;const r=38;let k=0;
  for(let row=0;row<5;row++)for(let col=0;col<5;col++){const cx=w/2-2*r*1.73+col*r*1.75+(row%2)*r*.87,cy=30+row*r*1.5;const ph=Math.sin(hT+col*.7+row*.9);const a=.25+.35*(ph+1)/2;
-  hexPath(x,cx,cy+ph*3,r-3);x.fillStyle=(row+col)%4===0?`rgba(200,148,31,${a})`:`rgba(14,138,120,${a})`;x.fill();x.strokeStyle='rgba(200,148,31,.35)';x.stroke();
+  hexPath(x,cx,cy+ph*3,r-3);x.fillStyle=(row+col)%4===0?`rgba(181,178,53,${a})`:`rgba(15,124,156,${a})`;x.fill();x.strokeStyle='rgba(181,178,53,.35)';x.stroke();
   if((row+col)%2===0){x.fillStyle='rgba(244,247,251,.85)';x.font='12px Calibri';x.textAlign='center';x.fillText(hexLabels[k++%hexLabels.length],cx,cy+4+ph*3)}}
- hexPath(x,w/2,30+2*r*1.5,r*1.15);x.fillStyle='#06201A';x.fill();x.lineWidth=3;x.strokeStyle='#C8941F';x.stroke();x.lineWidth=1;x.fillStyle='#F4F7FB';x.font='bold 22px Calibri';x.textAlign='center';x.fillText('bongo',w/2,30+3*r+2);x.fillStyle='#C8941F';x.fillText('.ai',w/2,30+3*r+22);
+ hexPath(x,w/2,30+2*r*1.5,r*1.15);x.fillStyle='#122867';x.fill();x.lineWidth=3;x.strokeStyle='#B5B235';x.stroke();x.lineWidth=1;x.fillStyle='#F4F7FB';x.font='bold 22px Calibri';x.textAlign='center';x.fillText('bongo',w/2,30+3*r+2);x.fillStyle='#B5B235';x.fillText('.ai',w/2,30+3*r+22);
  requestAnimationFrame(honey)}
 requestAnimationFrame(honey);
 
@@ -338,17 +338,17 @@ function runL1(){const cv=+$('l1cv').value,slot=+$('l1slot').value,pd=+$('l1pd')
  const g=+$('l1guess').value;
  kpis('l1k',[['Plan (averages)',plan.toFixed(1)+' min','warn'],['Simulated mean',mean.toFixed(1)+' min',mean>plan+1?'bad':'good','+'+(mean-plan).toFixed(1)+' min vs plan'],['On-time departures',Math.round(ont*100)+'%',ont<.8?'bad':'good',g?`you predicted ${g}%`:''],['P90 departure',p90.toFixed(1)+' min'],['Avg delay when late',avgLate.toFixed(1)+' min'],['Annual delay cost',naira(annual),'bad','at your turns/day']]);
  renders.l1()}
-renders.l1=()=>{if(!L1)return runL1();const {deps,crit,plan,slot,N}=L1;const b0=25,b1=90,bins=[];for(let v=b0;v<b1;v++)bins.push({x0:v,x1:v+1,y:0,c:v+1<=slot?'#0E8A78':'#e05a4c'});deps.forEach(d=>{const i=Math.floor(d)-b0;if(i>=0&&i<bins.length)bins[i].y++});const ym=Math.max(...bins.map(b=>b.y))*1.15;
- chart($('l1h'),{xmin:b0,xmax:b1,ymin:0,ymax:ym,bars:bins,vl:[{x:plan,c:'#C8941F',t:'Plan '+plan.toFixed(0)},{x:slot,c:'#fff',t:'Slot '+slot,dy:16}],xl:'minutes'});
+renders.l1=()=>{if(!L1)return runL1();const {deps,crit,plan,slot,N}=L1;const b0=25,b1=90,bins=[];for(let v=b0;v<b1;v++)bins.push({x0:v,x1:v+1,y:0,c:v+1<=slot?'#0F7C9C':'#e05a4c'});deps.forEach(d=>{const i=Math.floor(d)-b0;if(i>=0&&i<bins.length)bins[i].y++});const ym=Math.max(...bins.map(b=>b.y))*1.15;
+ chart($('l1h'),{xmin:b0,xmax:b1,ymin:0,ymax:ym,bars:bins,vl:[{x:plan,c:'#B5B235',t:'Plan '+plan.toFixed(0)},{x:slot,c:'#fff',t:'Slot '+slot,dy:16}],xl:'minutes'});
  // criticality
  const c=$('l1c'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);const items=[['Refuelling path',crit.fue],['Catering path',crit.cat],['Cleaning path',crit.cln],['Baggage path',crit.bag]];const bh=(h-20)/items.length;
- items.forEach((it,i)=>{const y=10+i*bh,v=it[1]/N;x.fillStyle='#9fbab3';x.font='13px Calibri';x.textAlign='left';x.fillText(it[0],0,y+bh/2+4);x.fillStyle='rgba(255,255,255,.06)';x.fillRect(120,y+6,w-180,bh-12);x.fillStyle=i===0?'#C8941F':'#2dd4bf';x.fillRect(120,y+6,(w-180)*v,bh-12);x.fillStyle='#F4F7FB';x.fillText(Math.round(v*100)+'%',120+(w-180)*v+6,y+bh/2+4)});
+ items.forEach((it,i)=>{const y=10+i*bh,v=it[1]/N;x.fillStyle='#A3B1CF';x.font='13px Calibri';x.textAlign='left';x.fillText(it[0],0,y+bh/2+4);x.fillStyle='rgba(255,255,255,.06)';x.fillRect(120,y+6,w-180,bh-12);x.fillStyle=i===0?'#B5B235':'#6EDEEF';x.fillRect(120,y+6,(w-180)*v,bh-12);x.fillStyle='#F4F7FB';x.fillText(Math.round(v*100)+'%',120+(w-180)*v+6,y+bh/2+4)});
  // network
  const n=$('l1n'),nn=fit(n),X=nn.x,W=nn.w,H=nn.h;X.clearRect(0,0,W,H);const node=(t,cx,cy,col)=>{X.fillStyle=col;X.beginPath();X.roundRect(cx-52,cy-14,104,28,8);X.fill();X.fillStyle='#fff';X.font='12px Calibri';X.textAlign='center';X.fillText(t,cx,cy+4)};
- const arr=(x1,y1,x2,y2)=>{X.strokeStyle='rgba(200,148,31,.6)';X.lineWidth=1.5;X.beginPath();X.moveTo(x1,y1);X.lineTo(x2,y2);X.stroke()};
+ const arr=(x1,y1,x2,y2)=>{X.strokeStyle='rgba(181,178,53,.6)';X.lineWidth=1.5;X.beginPath();X.moveTo(x1,y1);X.lineTo(x2,y2);X.stroke()};
  const c1=W*.1+10,c2=W*.37,c3=W*.64,c4=W*.9-10,r1=H*.18,r2=H*.42,r3=H*.66,r4=H*.88;
  arr(c1+52,r2,c2-52,r1);arr(c1+52,r2,c2-52,r2);arr(c1+52,r2,c2-52,r3);arr(c2+52,r1,c3-52,r2);arr(c2+52,r2,c3-52,r2);arr(c2+52,r3,c3-52,r2);arr(c3+52,r2,c4-52,r3);arr(c2+52,r4,c3-52,r4);arr(c3+52,r4,c4-52,r3);
- node('Deboard 8',c1,r2,'#0B6B5E');node('Clean 10',c2,r1,'#1D4E89');node('Cater 12',c2,r2,'#1D4E89');node('Fuel 15',c2,r3,'#8a6514');node('Board 15',c3,r2,'#0B6B5E');node('Offload 12',c1+(c2-c1)/2,r4,'#6d3a8a');node('Load 14',c3,r4,'#6d3a8a');node('Push 4 ✈',c4,r3,'#C0392B')};
+ node('Deboard 8',c1,r2,'#2457B8');node('Clean 10',c2,r1,'#0F7C9C');node('Cater 12',c2,r2,'#0F7C9C');node('Fuel 15',c2,r3,'#76741A');node('Board 15',c3,r2,'#2457B8');node('Offload 12',c1+(c2-c1)/2,r4,'#6d3a8a');node('Load 14',c3,r4,'#6d3a8a');node('Push 4 ✈',c4,r3,'#B03A2E')};
 $('l1run').onclick=runL1;['l1cv','l1slot','l1pd','l1imp'].forEach(i=>$(i).addEventListener('change',runL1));
 
 // ---------- LAB 2 ----------
@@ -370,20 +370,20 @@ function step2(tt){const p=p2();
  S2.t=tt;while(S2.lastRec+2<=tt){S2.lastRec+=2;S2.hist.push([S2.lastRec/60,S2.q.length])}if(S2.hist.length>1200)S2.hist.splice(0,S2.hist.length-1200);S2.maxq=Math.max(S2.maxq,S2.q.length);S2.done=S2.done.filter(d=>tt-d.t<1.2*p2().ts/2+.6)}
 function draw2(){const p=p2(),ctx=CTX2[$('l2ctx').value];const c=$('l2a'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);
  const sx=w-150,sh=Math.min(44,(h-20)/p.c-6);
- S2.srv.forEach((s,i)=>{const y=10+i*(sh+6);x.fillStyle=s?'#0B6B5E':'rgba(255,255,255,.06)';x.beginPath();x.roundRect(sx,y,110,sh,8);x.fill();x.strokeStyle='#C8941F';x.stroke();x.fillStyle='#F4F7FB';x.font='12px Calibri';x.textAlign='center';x.fillText(s?'serving':'idle',sx+55,y+sh/2+4);
-  if(s){const pr=Math.min(1,1-(s.until-S2.t)/p.ts);x.fillStyle='#C8941F';x.fillRect(sx+6,y+sh-6,98*Math.max(0,pr),3)}});
- S2.done.forEach(d=>{const age=(S2.t-d.t)/(p.ts/2+.5);const y=10+d.y*(sh+6)+sh/2;x.globalAlpha=Math.max(0,1-age);hexPath(x,sx+120+age*30,y,8);x.fillStyle='#2dd4bf';x.fill();x.globalAlpha=1});
+ S2.srv.forEach((s,i)=>{const y=10+i*(sh+6);x.fillStyle=s?'#2457B8':'rgba(255,255,255,.06)';x.beginPath();x.roundRect(sx,y,110,sh,8);x.fill();x.strokeStyle='#B5B235';x.stroke();x.fillStyle='#F4F7FB';x.font='12px Calibri';x.textAlign='center';x.fillText(s?'serving':'idle',sx+55,y+sh/2+4);
+  if(s){const pr=Math.min(1,1-(s.until-S2.t)/p.ts);x.fillStyle='#B5B235';x.fillRect(sx+6,y+sh-6,98*Math.max(0,pr),3)}});
+ S2.done.forEach(d=>{const age=(S2.t-d.t)/(p.ts/2+.5);const y=10+d.y*(sh+6)+sh/2;x.globalAlpha=Math.max(0,1-age);hexPath(x,sx+120+age*30,y,8);x.fillStyle='#6EDEEF';x.fill();x.globalAlpha=1});
  const per=Math.floor((sx-30)/22),rows=Math.max(1,Math.floor((h-20)/22));const shown=Math.min(S2.q.length,per*rows);
  for(let i=0;i<shown;i++){const e=S2.q[i],col=i%per,row=Math.floor(i/per);const wt=S2.t-e.arr;const hue=Math.max(0,140-wt*2.3);hexPath(x,sx-20-col*22,20+row*22,9);x.fillStyle=`hsl(${hue},70%,50%)`;x.fill()}
  if(S2.q.length>shown){x.fillStyle='#ff8a7a';x.font='bold 14px Calibri';x.textAlign='left';x.fillText('+'+(S2.q.length-shown)+' more',8,h-8)}
- x.fillStyle='#9fbab3';x.font='12px Calibri';x.textAlign='left';x.fillText(`t = ${Math.floor(S2.t/60)}h ${String(Math.floor(S2.t%60)).padStart(2,'0')}m · queue colour = time waiting (green → red at 60 min)`,8,h-8-(S2.q.length>shown?18:0));
+ x.fillStyle='#A3B1CF';x.font='12px Calibri';x.textAlign='left';x.fillText(`t = ${Math.floor(S2.t/60)}h ${String(Math.floor(S2.t%60)).padStart(2,'0')}m · queue colour = time waiting (green → red at 60 min)`,8,h-8-(S2.q.length>shown?18:0));
  const rho=p.lam*p.ts/(60*p.c),kw=kingman(rho,p.c,p.ts,p.ca,p.cs),aw=S2.wn?S2.ws/S2.wn:0;const hrs=12;
  const costS=p.c*(+$('l2sc').value),costW=p.lam*hrs*(isFinite(kw)?kw:600)/60*(+$('l2wc').value);
  kpis('l2k',[['Utilisation ρ',Math.round(rho*100)+'%',rho>=1?'bad':rho>.85?'warn':'good',rho>=1?'UNSTABLE: queue grows forever':''],['Avg wait (simulated)',fmt(aw,1)+' min',aw>30?'bad':'',fmt(S2.served)+' '+ctx.u+' served'],['Kingman forecast',isFinite(kw)?fmt(kw,1)+' min':'∞','warn'],['In queue now',S2.q.length,'', 'max '+S2.maxq],['Daily cost (12h)',naira(costS+costW),'',`servers ${naira(costS)} · waiting ${naira(costW)}`]]);
- const hs=S2.hist,t1=Math.max(1,S2.t/60),t0=Math.max(0,t1-12);chart($('l2q'),{xmin:t0,xmax:t1,ymin:0,ymax:Math.max(5,...hs.filter(v=>v[0]>=t0).map(v=>v[1]))*1.15,series:[{pts:hs.filter(v=>v[0]>=t0),c:'#C8941F',fill:'rgba(200,148,31,.15)'}],xl:'hours'});
+ const hs=S2.hist,t1=Math.max(1,S2.t/60),t0=Math.max(0,t1-12);chart($('l2q'),{xmin:t0,xmax:t1,ymin:0,ymax:Math.max(5,...hs.filter(v=>v[0]>=t0).map(v=>v[1]))*1.15,series:[{pts:hs.filter(v=>v[0]>=t0),c:'#B5B235',fill:'rgba(181,178,53,.15)'}],xl:'hours'});
  const pts=[];for(let r=.3;r<.985;r+=.01)pts.push([r*100,kingman(r,p.c,p.ts,p.ca,p.cs)]);const ym=Math.max(kingman(.95,p.c,p.ts,p.ca,p.cs),isFinite(kw)?kw*1.2:0,10);
  const pts2=[];for(let r=.3;r<.985;r+=.01)pts2.push([r*100,kingman(r,p.c,p.ts,p.ca/2,p.cs/2)]);
- chart($('l2kc'),{xmin:30,xmax:100,ymin:0,ymax:ym,series:[{pts:pts2,c:'#2dd4bf',w:1.5,dash:[4,4]},{pts,c:'#C8941F'}],dots:[{x:Math.min(rho,.99)*100,y:isFinite(kw)?kw:ym,c:rho>=1?'#e05a4c':'#fff',t:'you'}],xl:'utilisation %',hl:[]});
+ chart($('l2kc'),{xmin:30,xmax:100,ymin:0,ymax:ym,series:[{pts:pts2,c:'#6EDEEF',w:1.5,dash:[4,4]},{pts,c:'#B5B235'}],dots:[{x:Math.min(rho,.99)*100,y:isFinite(kw)?kw:ym,c:rho>=1?'#e05a4c':'#fff',t:'you'}],xl:'utilisation %',hl:[]});
 }
 function loop2(ts){const dt=Math.min(.1,(ts-lastF)/1000);lastF=ts;if(current==='l2'&&!paused){step2(S2.t+dt*(+$('l2sp').value));draw2()}requestAnimationFrame(loop2)}
 function setCtx2(){const c=CTX2[$('l2ctx').value];$('l2title').textContent=c.t;$('l2sub').textContent=c.s+' Dashed teal line on the hockey-stick chart = same system with variability halved.';$('l2l').value=c.l;$('l2c').value=c.c;$('l2s').value=c.sv;$('l2sc').value=c.sc;$('l2wc').value=c.wc;['l2l','l2c','l2s'].forEach(i=>$(i).dispatchEvent(new Event('input')));reset2()}
@@ -400,8 +400,8 @@ function runL3(){const L=+$('l3L').value,aS=+$('l3a').value,beta=+$('l3b').value
   const o=Math.max(0,F[e]+aS*(cover*F[e]-I[e])+aS*beta*(L*F[e]-SL[e]));pipe[e].push(o);SL[e]+=o;O[e].push(o);INV[e].push(I[e]);cost+=I[e]>0?I[e]:-2*I[e]}}
  const v=a=>{const m=a.reduce((x,y)=>x+y)/a.length;return a.reduce((x,y)=>x+(y-m)**2,0)/a.length};const bw=v(O[3])/Math.max(v(D),1e-6);const pk=Math.max(...O[3]),pkD=Math.max(...D);const g=+$('l3guess').value;
  kpis('l3k',[['Shopper peak',fmt(pkD)+' (+'+fmt(pkD-100)+'%)'],['Factory peak order',fmt(pk)+' (+'+fmt(pk-100)+'%)',pk>pkD*1.3?'bad':'good',g?`you predicted +${g}%`:''],['Bullwhip ratio',fmt(bw,1)+'×',bw>3?'bad':bw>1.5?'warn':'good','var(factory orders) ÷ var(demand)'],['Worst retail shelf',fmt(Math.min(...INV[0])),Math.min(...INV[0])<0?'bad':'good','units (negative = backlog)'],['Chain cost index',fmt(cost/1000,1)+'k','','holding + 2× backlog']]);
- const cols=['#2dd4bf','#4a86d0','#C8941F','#e05a4c'],ser=O.map((o,e)=>({pts:o.map((y,t)=>[t,y]),c:cols[e],w:e===3?3:2}));ser.unshift({pts:D.map((y,t)=>[t,y]),c:'#fff',w:2.5});
- const ym=Math.max(...O.flat(),...D)*1.1;chart($('l3o'),{xmin:0,xmax:51,ymin:0,ymax:ym,series:ser,xl:'week',shade:(pat==='pulse'||pat==='fest')?[{x0:8,x1:13,c:'rgba(200,148,31,.08)'}]:[]});
+ const cols=['#6EDEEF','#6E9BE0','#B5B235','#e05a4c'],ser=O.map((o,e)=>({pts:o.map((y,t)=>[t,y]),c:cols[e],w:e===3?3:2}));ser.unshift({pts:D.map((y,t)=>[t,y]),c:'#fff',w:2.5});
+ const ym=Math.max(...O.flat(),...D)*1.1;chart($('l3o'),{xmin:0,xmax:51,ymin:0,ymax:ym,series:ser,xl:'week',shade:(pat==='pulse'||pat==='fest')?[{x0:8,x1:13,c:'rgba(181,178,53,.08)'}]:[]});
  const iv=INV.flat();chart($('l3i'),{xmin:0,xmax:51,ymin:Math.min(0,...iv)*1.1,ymax:Math.max(...iv)*1.1,series:INV.map((o,e)=>({pts:o.map((y,t)=>[t,y]),c:cols[e]})),hl:[{y:0,c:'rgba(255,255,255,.4)'}],xl:'week'})}
 renders.l3=runL3;['l3L','l3a','l3b','l3t','l3share','l3pat'].forEach(i=>$(i).addEventListener('input',runL3));
 const set3=(L,a,b,t,s)=>{$('l3L').value=L;$('l3a').value=a;$('l3b').value=b;$('l3t').value=t;$('l3share').checked=s;['l3L','l3a','l3b','l3t'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL3()};
@@ -419,15 +419,15 @@ function costRate(p,T,pol,n=3000){let C=0,Lt=0;const fC=p.fc+p.fd*p.lm,pC=p.pc+p
 function runL4(){const p=p4(),T=+$('l4T').value;const curve=[];let best=[0,Infinity];for(let t=30;t<=1000;t+=20){const c=costRate(p,t,'pm',1500);curve.push([t,c]);if(c<best[1])best=[t,c]}
  const rtf=costRate(p,0,'rtf',6000),cbm=costRate(p,0,'cbm',6000),cur=costRate(p,T,'pm',6000);
  const ym=Math.max(rtf,cbm,...curve.map(c=>c[1]))*1.1;
- chart($('l4c'),{xmin:30,xmax:1000,ymin:0,ymax:ym,series:[{pts:curve,c:'#C8941F',w:2.5}],hl:[{y:rtf,c:'#e05a4c',t:'Run to failure '+fmt(rtf,1)},{y:cbm,c:'#2dd4bf',t:'Condition-based '+fmt(cbm,1)}],vl:[{x:T,c:'#fff',t:'your T'}],dots:[{x:best[0],y:best[1],c:'#C8941F',t:'optimum T≈'+best[0]+'d'}],xl:'PM interval (days)'});
+ chart($('l4c'),{xmin:30,xmax:1000,ymin:0,ymax:ym,series:[{pts:curve,c:'#B5B235',w:2.5}],hl:[{y:rtf,c:'#e05a4c',t:'Run to failure '+fmt(rtf,1)},{y:cbm,c:'#6EDEEF',t:'Condition-based '+fmt(cbm,1)}],vl:[{x:T,c:'#fff',t:'your T'}],dots:[{x:best[0],y:best[1],c:'#B5B235',t:'optimum T≈'+best[0]+'d'}],xl:'PM interval (days)'});
  const bestAll=Math.min(rtf,cbm,best[1]),fleet=24;
  kpis('l4k',[['Run to failure',naira(rtf*1e6),'','per asset-year'],['PM at your T',naira(cur*1e6),cur<rtf?'good':'bad',cur<rtf?'saves '+naira((rtf-cur)*1e6):'COSTS '+naira((cur-rtf)*1e6)+' more'],['Best PM interval',best[1]<rtf*.98?best[0]+' days':'never do PM',best[1]<rtf*.98?'good':'bad',naira(best[1]*1e6)],['Condition-based',naira(cbm*1e6),cbm<=bestAll+.01?'good':'','incl. ₦1.5m/yr sensors'],['Fleet prize (24 assets)',naira((rtf-bestAll)*1e6*fleet),'good','per year vs run-to-failure']]);
  drawFleet(p,T)}
 function drawFleet(p,T){const pol=$('l4pol').value,c=$('l4t'),{x,w,h}=fit(c);x.clearRect(0,0,w,h);const N=24,H=1095,m=40,rh=(h-24)/N;
- x.fillStyle='#9fbab3';x.font='11px Calibri';x.textAlign='center';for(let y=0;y<=3;y++){const px=m+(w-m-10)*y/3;x.fillText('Y'+y,px,h-6);x.strokeStyle='rgba(255,255,255,.06)';x.beginPath();x.moveTo(px,0);x.lineTo(px,h-18);x.stroke()}
- let nf=0,np=0;for(let i=0;i<N;i++){const y=4+i*rh+rh/2;x.fillStyle='rgba(255,255,255,.05)';x.fillRect(m,y-rh/2+2,w-m-10,rh-4);x.fillStyle='#9fbab3';x.textAlign='right';x.fillText('#'+(i+1),m-6,y+4);
+ x.fillStyle='#A3B1CF';x.font='11px Calibri';x.textAlign='center';for(let y=0;y<=3;y++){const px=m+(w-m-10)*y/3;x.fillText('Y'+y,px,h-6);x.strokeStyle='rgba(255,255,255,.06)';x.beginPath();x.moveTo(px,0);x.lineTo(px,h-18);x.stroke()}
+ let nf=0,np=0;for(let i=0;i<N;i++){const y=4+i*rh+rh/2;x.fillStyle='rgba(255,255,255,.05)';x.fillRect(m,y-rh/2+2,w-m-10,rh-4);x.fillStyle='#A3B1CF';x.textAlign='right';x.fillText('#'+(i+1),m-6,y+4);
   let t=0;while(t<H){const life=weib(p.b,p.e);let ev,dt,dn;if(pol==='pm'&&T<life){ev='p';dt=T;dn=p.pd}else if(pol==='cbm'&&rnd()<p.det){ev='p';dt=life*.95;dn=p.pd}else{ev='f';dt=life;dn=p.fd}t+=dt;if(t>H)break;const px=m+(w-m-10)*t/H;
-   if(ev==='f'){nf++;x.fillStyle='#e05a4c';x.beginPath();x.arc(px,y,Math.min(5,rh/2-1),0,7);x.fill();x.fillStyle='rgba(224,90,76,.35)';x.fillRect(px,y-rh/2+3,(w-m-10)*dn/H,rh-6)}else{np++;x.fillStyle='#4a86d0';x.save();x.translate(px,y);x.rotate(Math.PI/4);const s=Math.min(6,rh/2);x.fillRect(-s/2,-s/2,s,s);x.restore()}t+=dn}}
+   if(ev==='f'){nf++;x.fillStyle='#e05a4c';x.beginPath();x.arc(px,y,Math.min(5,rh/2-1),0,7);x.fill();x.fillStyle='rgba(224,90,76,.35)';x.fillRect(px,y-rh/2+3,(w-m-10)*dn/H,rh-6)}else{np++;x.fillStyle='#6E9BE0';x.save();x.translate(px,y);x.rotate(Math.PI/4);const s=Math.min(6,rh/2);x.fillRect(-s/2,-s/2,s,s);x.restore()}t+=dn}}
  x.fillStyle='#F4F7FB';x.textAlign='right';x.font='bold 13px Calibri';x.fillText(`${nf} failures · ${np} planned interventions`,w-12,14)}
 renders.l4=runL4;$('l4run').onclick=runL4;['l4b','l4e','l4T','l4l','l4d','l4pol','l4fc','l4fd','l4pc','l4pd'].forEach(i=>$(i).addEventListener('change',runL4));
 $('l4ctx').onchange=()=>{const c=CTX4[$('l4ctx').value];$('l4b').value=c.b;$('l4e').value=c.e;$('l4l').value=c.l;$('l4fc').value=c.fc;$('l4fd').value=c.fd;$('l4pc').value=c.pc;$('l4pd').value=c.pd;['l4b','l4e','l4l'].forEach(i=>$(i).dispatchEvent(new Event('input')));runL4()};
@@ -447,10 +447,10 @@ function runL5(){const sD=+$('l5s').value,qD=+$('l5q').value,pd=+$('l5p').value,
  kpis('l5k',[['Fill rate',fmt(r.fill*100,1)+'%',r.fill>=.98?'good':r.fill>=.93?'warn':'bad','calm world: '+fmt(calm.fill*100,1)+'%'],['Stock-out days / yr',fmt(r.so,1),r.so>5?'bad':'good'],['Average stock',fmt(r.avg/mu,0)+' days','',fmt(r.avg)+' '+ctx.u],['Annual cost',naira(hold+ordC+shortC),'',`hold ${naira(hold)} · short ${naira(shortC)}`],['Orders / yr',fmt(r.orders,1),'','₦15m per import cycle']]);
  const pts=one.path.filter(p=>p.inv!==undefined&&p.d>=120).map(p=>[p.d-120,p.inv/mu]);const shade=[];pts.forEach(p=>{if(p[1]<=0)shade.push({x0:p[0],x1:p[0]+1,c:'rgba(224,90,76,.45)'})});
  const ords=one.path.filter(p=>p.o!==undefined&&p.a>=120);
- chart($('l5p1'),{xmin:0,xmax:365,ymin:0,ymax:Math.max(sD+qD,...pts.map(p=>p[1]))*1.1,shade,series:[{pts,c:'#2dd4bf',fill:'rgba(45,212,191,.12)'}],hl:[{y:sD,c:'#C8941F',t:'reorder point s'}],dots:ords.filter(o=>o.late&&o.a-120<365).map(o=>({x:o.a-120,y:0,c:'#e05a4c',r:4})),xl:'day',yf:v=>fmt(v)+'d'});
+ chart($('l5p1'),{xmin:0,xmax:365,ymin:0,ymax:Math.max(sD+qD,...pts.map(p=>p[1]))*1.1,shade,series:[{pts,c:'#6EDEEF',fill:'rgba(110,222,239,.12)'}],hl:[{y:sD,c:'#B5B235',t:'reorder point s'}],dots:ords.filter(o=>o.late&&o.a-120<365).map(o=>({x:o.a-120,y:0,c:'#e05a4c',r:4})),xl:'day',yf:v=>fmt(v)+'d'});
  renders.curve5()}
 renders.curve5=()=>{const pd=+$('l5p').value,qD=+$('l5q').value,sD=+$('l5s').value;const a=[],b=[];for(let s=0;s<=120;s+=5){a.push([s,sim5(s,qD,0,365*15,false).fill*100]);b.push([s,sim5(s,qD,pd,365*15,false).fill*100])}
- chart($('l5c'),{xmin:0,xmax:120,ymin:Math.max(0,Math.min(...b.map(v=>v[1]))-2),ymax:100.5,series:[{pts:a,c:'#2dd4bf'},{pts:b,c:'#e05a4c'}],hl:[{y:98,c:'rgba(255,255,255,.5)',t:'98%'}],vl:[{x:sD,c:'#C8941F'}],xl:'reorder point (days of cover)'})};
+ chart($('l5c'),{xmin:0,xmax:120,ymin:Math.max(0,Math.min(...b.map(v=>v[1]))-2),ymax:100.5,series:[{pts:a,c:'#6EDEEF'},{pts:b,c:'#e05a4c'}],hl:[{y:98,c:'rgba(255,255,255,.5)',t:'98%'}],vl:[{x:sD,c:'#B5B235'}],xl:'reorder point (days of cover)'})};
 function opt5(){const qD=+$('l5q').value,pd=+$('l5p').value;let calmS=null,riskS=null;for(let s=0;s<=150;s++){if(calmS===null&&sim5(s,qD,0,365*40,false).fill>=.98)calmS=s;if(riskS===null&&sim5(s,qD,pd,365*40,false).fill>=.98)riskS=s;if(calmS!==null&&riskS!==null)break}
  if(riskS===null)riskS=150;$('l5s').value=riskS;$('l5s').dispatchEvent(new Event('input'));runL5();const mu=+$('l5m').value,ctx=CTX5[+$('l5ctx').value];
  $('l5insight').classList.add('on');$('l5insight').innerHTML=`<b>Result:</b> 98% fill needs <b>s = ${riskS} days</b> of cover with disruptions vs <b>${calmS} days</b> in a calm world. The <b>resilience premium is ${riskS-calmS} days</b> ≈ ${fmt((riskS-calmS)*mu)} ${ctx.u} ≈ <b>${naira((riskS-calmS)*mu*ctx.val)}</b> of working capital, plus ~${naira((riskS-calmS)*mu*ctx.val*.25)}/yr to carry it.${$('l5guess').value?` You predicted ${$('l5guess').value} extra days.`:''}<br><br>Disruptions fatten the tail, and the tail sets your buffer. Put this number beside the cost of dual sourcing or a bonded LFZ warehouse.`}
