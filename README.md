@@ -14,7 +14,7 @@ Two 75-minute sessions on variability, feedback and decisions under uncertainty,
 | `index.html` | Programme hub: learning arc, session plan, the five labs, downloads |
 | `lab/` | Operations Simulation Lab (single self-contained HTML file; keys 0–5 switch labs; `#l1`–`#l5` deep-links) |
 | `book/` | Participant Book, readable online (40-minute self-study route) |
-| `downloads/` | Facilitator deck (45 slides, full speaker scripts), Participant slides (33), Participant Book PDF, offline lab file |
+| `downloads/` | Facilitator deck (53 slides, full speaker scripts), Participant slides (38), Participant Book PDF, offline lab file |
 | `assets/` | bongo.ai hex mark, lab screenshots, social preview image |
 
 | Lab | Idea | Context |
