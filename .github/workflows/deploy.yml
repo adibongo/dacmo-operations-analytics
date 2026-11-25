@@ -1,8 +1,8 @@
 name: Deploy to markanalytics.online/dacmo
 
 on:
-  push:
-    branches: [main]
+  # Manual only: the live copy at markanalytics.online/dacmo is currently updated
+  # through hPanel File Manager. Add FTP_* secrets and re-enable push to automate.
   workflow_dispatch:
 
 jobs:
@@ -21,6 +21,7 @@ jobs:
           # public_html/dacmo/ (the site then lives at https://markanalytics.online/dacmo/)
           server-dir: ${{ vars.FTP_TARGET_DIR || 'public_html/dacmo/' }}
           exclude: |
-            **/.git*
+            **/.git/**
+            .github/**
             **/.git*/**
             README.md

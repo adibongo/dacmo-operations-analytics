@@ -1,0 +1,5 @@
+AddType application/vnd.openxmlformats-officedocument.presentationml.presentation .pptx
+AddType image/svg+xml .svg
+<FilesMatch "\.(pptx|pdf)$">
+  Header set Content-Disposition attachment
+</FilesMatch>
